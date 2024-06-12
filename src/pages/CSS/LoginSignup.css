@@ -1,0 +1,17 @@
+.loginsignup {
+  width: 100%;
+  background: #fce3fe;
+  padding: 100px 0;
+}
+.loginsignup-conyainer {
+  width: 580px;
+}
+.loginsignup-fields input {
+  border: 1px solid #c9c9c9;
+  padding: 20px;
+  border-radius: 10px;
+}
+button {
+  width: 400px;
+  border-radius: 10px;
+}
