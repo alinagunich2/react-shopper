@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import star_icon from "../assets/star_icon.png";
 import start_dull_icon from "../assets/star_dull_icon.png";
 import "./ProductDisplay.css";
+import { ShopContext } from "../../context/ShopContext";
 
 const ProductDisplay = (props) => {
   const { product } = props;
+  const { addToCart, cartItem } = useContext(ShopContext);
+  const add = () => {
+    addToCart(product.id);
+  };
   return (
     <div className="proddis  mb-20 my-0 mx-40">
       <div className="proddis-left flex gap-4">
@@ -55,7 +60,10 @@ const ProductDisplay = (props) => {
             <div className="size">XXL</div>
           </div>
         </div>
-        <button className="py-5 px-10 w-52 text-base font-semibold text-white bg-red-500 mb-10 border-spacing-0 outline-none cursor-pointer">
+        <button
+          onClick={() => add()}
+          className="py-5 px-10 w-52 text-base font-semibold text-white bg-red-500 mb-10 border-spacing-0 outline-none cursor-pointer"
+        >
           ADD TO CART
         </button>
         <p className="proddis-right-categ mt-2">

@@ -6,7 +6,12 @@ const Item = (props) => {
     <div className="item w-96">
       <Link to={"/product/" + props.id}>
         {" "}
-        <img className="m-0 mt-2 mb-2" src={props.image} alt="" />
+        <img
+          className="m-0 mt-2 mb-2"
+          onClick={window.scrollTo(0, 0)}
+          src={props.image}
+          alt=""
+        />
       </Link>
       <p>{props.name}</p>
       <div className="item-prices flex gap-5">
