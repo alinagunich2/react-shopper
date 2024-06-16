@@ -5,7 +5,6 @@ import "./CartItem.css";
 const CartItem = () => {
   const { getTotalCartAmount, all_product, cartItem, removeToCart } =
     useContext(ShopContext);
-  console.log(cartItem);
   return (
     <div className="cartitems my-24 mx-44">
       <div className="cartitems-main">

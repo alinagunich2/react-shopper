@@ -11,7 +11,6 @@ const Navbar = () => {
   const { getTotalCartItems } = useContext(ShopContext);
   const menuRef = useRef();
   const dropdown_toggle = (e) => {
-    console.log(e);
     menuRef.current.classList.toggle("nav-menu-visible");
     e.target.classList.toggle("open");
   };
@@ -61,11 +60,23 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="nav-login-cart flex items-center gap-11 w-">
-        <Link to="/login">
-          <button className="w-40 h-14 outline-0 text-xl font-medium ">
-            Login
+        {localStorage.getItem("auth-token") ? (
+          <button
+            className="logout w-40 bg-blue-300 h-14  outline-0 text-xl font-medium  "
+            onClick={() => {
+              localStorage.removeItem("auth-token");
+              window.location.replace("/");
+            }}
+          >
+            Logout
           </button>
-        </Link>
+        ) : (
+          <Link to="/login">
+            <button className="login w-40 h-14 outline-0 text-xl font-medium ">
+              Login
+            </button>
+          </Link>
+        )}
 
         <Link to="/cart">
           <img src={cart_icon} alt="cart_icon" />

@@ -22,7 +22,6 @@ const AddProduct = () => {
     let product = productDetails;
 
     let formData = new FormData();
-    console.log(formData);
     formData.append("product", image);
 
     await fetch("http://localhost:4000/upload", {
@@ -30,7 +29,7 @@ const AddProduct = () => {
       headers: {
         Accepts: "application/json",
       },
-      body: FormData,
+      body: formData,
     })
       .then((resp) => resp.json())
       .then((data) => {
@@ -38,9 +37,20 @@ const AddProduct = () => {
       });
     if (responseData.success) {
       product.image = responseData.image_url;
-    }
 
-    console.log(responseData);
+      await fetch("http://localhost:4000/addproduct", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          data.success ? alert("prod added") : alert("failed");
+        });
+    }
   };
   return (
     <div className="addproduct box-border w-full py-7 px-12 my-5 mx-8 rounded-md bg-white">

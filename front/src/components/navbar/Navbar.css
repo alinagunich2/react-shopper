@@ -19,6 +19,8 @@
   border: 1px solid #7a7a7a;
   border-radius: 75px;
   color: #515151;
+}
+.login {
   background-color: white;
 }
 .nav-login-cart button:active {

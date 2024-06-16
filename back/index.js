@@ -35,7 +35,7 @@ app.use("/images", express.static("upload/images"));
 app.post("/upload", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `http://localhost:${port}/images/${req.name}`,
+    image_url: `http://localhost:${port}/images/${req.file.filename}`,
   });
 });
 
@@ -77,10 +77,10 @@ const Product = mongoose.model("Product", {
 app.post("/addproduct", async (req, res) => {
   let products = await Product.find({});
   let id;
-  if (products.lendth > 0) {
+  if (products.length > 0) {
     let last_product_arry = products.slice(-1);
     let last_product = last_product_arry[0];
-    id = last_product + 1;
+    id = last_product.id + 1;
   } else {
     id = 1;
   }
@@ -102,7 +102,7 @@ app.post("/addproduct", async (req, res) => {
   });
 });
 app.post("/removeproduct", async (req, res) => {
-  await Product.findByIdAndDelete({ id: req.body.id });
+  await Product.findOneAndDelete({ id: req.body.id });
   console.log("remove");
   res.json({
     success: true,
@@ -115,6 +115,88 @@ app.get("/allproducts", async (req, res) => {
   console.log("all prod");
   res.send(products);
 });
+
+const Users = mongoose.model("Users", {
+  name: {
+    type: String,
+  },
+  email: {
+    type: String,
+    unique: true,
+  },
+  password: {
+    type: String,
+  },
+  cartData: {
+    type: Object,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+app.post("/signup", async (req, res) => {
+  let check = await Users.findOne({ email: req.body.email });
+  if (check) {
+    return res.status(400).json({ success: false, errors: "exist user" });
+  }
+  let cart = {};
+  for (let i = 0; i < 300; i++) {
+    cart[i] = 0;
+  }
+  const user = new Users({
+    name: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    cartData: req.body.cartData,
+  });
+  await user.save();
+
+  const data = {
+    user: {
+      id: user.id,
+    },
+  };
+  const token = jwt.sign(data, "secret_ecom");
+  res.json({ success: true, token });
+});
+
+app.post("/login", async (req, res) => {
+  let user = await Users.findOne({ email: req.body.email });
+  if (user) {
+    const passCompare = req.body.password == user.password;
+    if (passCompare) {
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      const token = jwt.sign(data, "secret_ecom");
+      res.json({ success: true, token });
+    } else {
+      res.json({ success: false, errors: "wrong password" });
+    }
+  } else {
+    res.json({ success: false, errors: "wrong email" });
+  }
+});
+
+app.get("/newcollections", async (req, res) => {
+  let products = await Product.find({});
+  let newcollection = products.slice(1).slice(-8);
+  console.log("new collection");
+  res.send(newcollection);
+});
+
+app.get("/popularinwomen", async (req, res) => {
+  let products = await Product.find({ category: "women" });
+  let product_in_women = products.slice(0, 4);
+  console.log("Popular women");
+  res.send(product_in_women);
+});
+
+app.post("/addcart", async (req, res) => {});
 
 app.listen(port, (error) => {
   if (!error) {

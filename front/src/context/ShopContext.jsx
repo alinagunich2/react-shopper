@@ -1,20 +1,30 @@
 import React, { useState } from "react";
-import all_product from "../components/assets/all_product";
 export const ShopContext = React.createContext(null);
 
+const getDefaultCart = () => {
+  let cart = {};
+  for (let i = 0; i < 300 + 1; i++) {
+    cart[i] = 0;
+  }
+  return cart;
+};
+
 const ShopContextProvider = (props) => {
-  const getDefaultCart = () => {
-    let cart = {};
-    for (let i = 0; i < all_product.length + 1; i++) {
-      cart[i] = 0;
-    }
-    return cart;
-  };
   const [cartItem, setCartItem] = useState(getDefaultCart());
+  const [all_product, setAll_Product] = useState([]);
+
+  React.useEffect(() => {
+    fetch("http://localhost:4000/allproducts")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setAll_Product(data);
+        console.log(all_product);
+      });
+  }, []);
 
   const addToCart = (itemId) => {
     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    console.log(cartItem, "al,");
   };
   const removeToCart = (itemId) => {
     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
