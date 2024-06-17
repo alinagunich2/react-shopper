@@ -1,10 +1,9 @@
 import React from "react";
 import exclusive_image from "../assets/exclusive_image.png";
-import "./Offers.css";
 const Offers = () => {
   return (
-    <div className="offers flex m-auto">
-      <div className="offers-left flex-1 flex flex-col justify-center">
+    <div className="offers flex m-auto px-40 mb-40 bg-custom-gradient">
+      <div className="flex-1 flex flex-col justify-center">
         <h1 className=" text-[#171717] text-7xl font-semibold">Exclusive</h1>
         <h1 className=" text-[#171717] text-7xl font-semibold">
           Offers For You
@@ -16,7 +15,7 @@ const Offers = () => {
           Check Now
         </button>
       </div>
-      <div className="offers-right flex-1 flex items-center justify-center pt-12">
+      <div className="flex-1 flex items-center justify-center pt-12">
         <img src={exclusive_image} alt="exclusive_image" />
       </div>
     </div>

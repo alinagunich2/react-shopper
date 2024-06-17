@@ -59,7 +59,7 @@ const AddProduct = () => {
         <input
           value={productDetails.name}
           onChange={changeHandler}
-          className="border border-solid border-[#c3c3c3] box-border w-full h-12 rounded pl-4 outline-none text-[#7b7b7b] tex"
+          className="border-solid border-[#c3c3c3] box-border w-full h-12 rounded pl-4 outline-none text-[#7b7b7b] tex"
           type="text"
           name="name"
           placeholder="Type here"

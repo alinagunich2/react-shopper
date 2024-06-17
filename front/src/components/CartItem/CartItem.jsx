@@ -6,8 +6,8 @@ const CartItem = () => {
   const { getTotalCartAmount, all_product, cartItem, removeToCart } =
     useContext(ShopContext);
   return (
-    <div className="cartitems my-24 mx-44">
-      <div className="cartitems-main">
+    <div className=" my-24 mx-44">
+      <div className="cartitems-main items-center gap-16 py-5 text-[#454545] text-lg font-semibold">
         <p>Products</p>
         <p>Title</p>
         <p>Price</p>
@@ -19,18 +19,20 @@ const CartItem = () => {
       {all_product.map((e) => {
         if (cartItem[e.id] > 0) {
           return (
-            <div className="cartit">
-              <div className="cartitems-format cartitems-main">
-                <img className="cartitems-product-icon" src={e.image} alt="" />
+            <div>
+              <div className=" text-lg font-medium">
+                <img className=" h-16" src={e.image} alt="" />
                 <p>{e.name}</p>
                 <p>$ {e.new_price}</p>
-                <button className="cartitems-quantity">{cartItem[e.id]}</button>
+                <button className=" w-16 h-12 border-solid border-[#ebebeb] bg-white">
+                  {cartItem[e.id]}
+                </button>
                 <p>$ {e.new_price * cartItem[e.id]}</p>
                 <img
                   onClick={() => {
                     removeToCart(e.id);
                   }}
-                  className="cartitems-remove-icon"
+                  className=" w-4 mx-10 cursor-pointer"
                   src={remove_icon}
                   alt=""
                 />
@@ -40,31 +42,37 @@ const CartItem = () => {
           );
         }
       })}
-      <div className="cartitems-down">
-        <div className="cartitems-total">
-          <h1>cart Total</h1>
+      <div className="flex my-24">
+        <div className="flex-1 flex flex-col mr-52 gap-10">
+          <h1 className=" text-3xl">cart Total</h1>
           <div className="">
-            <div className="cartitems-total-item">
+            <div className="flex justify-between py-4 border border-solid border-[#555]">
               <p>Subtatal</p>
               <p>${getTotalCartAmount()}</p>
             </div>
-            <div className="cartitems-total-item">
+            <div className="flex justify-between py-4 border border-solid border-[#555]">
               <p>Shipping Free</p>
               <p>Free</p>
             </div>
 
-            <div className="cartitems-total-item">
+            <div className="flex justify-between py-4 border border-solid border-[#555]">
               <p>Total</p>
               <p>${getTotalCartAmount()}</p>
             </div>
           </div>
           <button>PROCEED TO CHECKOUT</button>
         </div>
-        <div className="cartitems-promocode">
-          <p>If you have a promo code, Enter it here</p>
-          <div className="cartitems-promobox">
-            <input type="text" placeholder="promo code" />
-            <button>Submit</button>
+        <div className="flex-1 text-base font-medium">
+          <p className="text-[#555]">If you have a promo code, Enter it here</p>
+          <div className="cartitems-promobox flex border-spacing-0 mt-4 pl-5 h-14 bg-[#eaeaea]">
+            <input
+              className="border-spacing-0 outline-none bg-transparent text-base w-80"
+              type="text"
+              placeholder="promo code"
+            />
+            <button className=" w-44 h-14 text-base bg-black text-white cursor-pointer">
+              Submit
+            </button>
           </div>
         </div>
       </div>

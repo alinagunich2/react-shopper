@@ -1,5 +1,4 @@
 import React from "react";
-import "./CSS/LoginSignup.css";
 const LoginSignup = () => {
   const [state, setState] = React.useState("Login");
   const [formData, setFormData] = React.useState({
@@ -57,12 +56,13 @@ const LoginSignup = () => {
   };
 
   return (
-    <div className="loginsignup ">
-      <div className="loginsignup-conyainer  m-auto bg-white py-10 px-16">
+    <div className=" w-full bg-[#fce3fe] py-28">
+      <div className=" max-w-lg m-auto bg-white py-10 px-16">
         <h1 className=" my-5 mx-0 text-5xl">{state}</h1>
         <div className="loginsignup-fields flex flex-col gap-7 mt-8">
           {state === "Sign Up" && (
             <input
+              className="border border-solid border-[#c9c9c9] p-5 rounded-xl"
               name="username"
               value={formData.username}
               onChange={(e) => changeHandler(e)}
@@ -71,6 +71,7 @@ const LoginSignup = () => {
             />
           )}
           <input
+            className="border border-solid border-[#c9c9c9] p-5 rounded-xl"
             name="email"
             value={formData.email}
             onChange={changeHandler}
@@ -78,6 +79,7 @@ const LoginSignup = () => {
             placeholder="Your Email"
           />
           <input
+            className="border border-solid border-[#c9c9c9] p-5 rounded-xl"
             name="password"
             value={formData.password}
             onChange={changeHandler}
@@ -89,7 +91,7 @@ const LoginSignup = () => {
           onClick={() => {
             state === "Login" ? login() : signUp();
           }}
-          className=" h-20 text-white bg-red-400 mt-8 borde\ text-2xl font-medium cursor-pointer"
+          className=" min-w-72 rounded-xl h-14 text-white bg-red-400 mt-8  text-2xl font-medium cursor-pointer"
         >
           Continue
         </button>
