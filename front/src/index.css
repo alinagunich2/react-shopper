@@ -15,6 +15,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.cartitems-main {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+}
+
+.cartitems-promobox {
+  width: 504px;
+}
 
 .bg-custom-gradient {
   background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
@@ -24,4 +32,14 @@ code {
 }
 .nav-menu-visible {
   display: flex;
+}
+
+.flex-center-all {
+  @apply flex justify-center items-center;
+}
+.hr-navigation {
+  @apply border-none w-full h-1 rounded-lg bg-red-500;
+}
+.productDisplay-size {
+  @apply py-4 px-6 bg-white border border-solid border-[#ebebeb] rounded-sm cursor-pointer;
 }

@@ -1,12 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/Navbar";
 import Shop from "./pages/Shop";
 import ShopCategory from "./pages/ShopCategory";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import LoginSignup from "./pages/LoginSignup";
-import Fooret from "./components/Footer/Fooret";
+import Fooret from "./components/Fooret";
 
 import men_banner from "./components/assets/banner_mens.png";
 import women_banner from "./components/assets/banner_women.png";

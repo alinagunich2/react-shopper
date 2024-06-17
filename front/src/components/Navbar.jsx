@@ -1,9 +1,9 @@
 import React, { useContext, useRef, useState } from "react";
-import logo from "../assets/logo.png";
-import cart_icon from "../assets/cart_icon.png";
+import logo from "./assets/logo.png";
+import cart_icon from "./assets/cart_icon.png";
 import { Link } from "react-router-dom";
-import { ShopContext } from "../../context/ShopContext";
-import nav_dropdoun from "../assets/dropdown_icon.svg";
+import { ShopContext } from "../context/ShopContext";
+import nav_dropdoun from "./assets/dropdown_icon.svg";
 
 const Navbar = () => {
   const [menu, setMenu] = useState("shop");
@@ -14,7 +14,7 @@ const Navbar = () => {
     e.target.classList.toggle("open");
   };
   return (
-    <div className="flex gap-5 flex-wrap justify-around p-4">
+    <div className="flex flex-wrap justify-around gap-5  p-4">
       <div className="flex items-center gap-3">
         <img src={logo} alt="logo" />
         <p className="text-[#171717] text-[38px] font-semibold">SHOPPER</p>
@@ -36,11 +36,7 @@ const Navbar = () => {
           }}
         >
           <Link to="/">Shop</Link>{" "}
-          {menu === "shop" ? (
-            <hr className=" border-none w-full h-1 rounded-lg bg-red-500" />
-          ) : (
-            <></>
-          )}
+          {menu === "shop" ? <hr className="hr-navigation" /> : <></>}
         </li>
         <li
           className="cursor-pointer"
@@ -49,11 +45,7 @@ const Navbar = () => {
           }}
         >
           <Link to="/mens">Men</Link>{" "}
-          {menu === "men" ? (
-            <hr className=" border-none w-full h-1 rounded-lg bg-red-500" />
-          ) : (
-            <></>
-          )}
+          {menu === "men" ? <hr className="hr-navigation" /> : <></>}
         </li>
         <li
           className="cursor-pointer"
@@ -62,11 +54,7 @@ const Navbar = () => {
           }}
         >
           <Link to="/womens">Women</Link>{" "}
-          {menu === "women" ? (
-            <hr className=" border-none w-full h-1 rounded-lg bg-red-500" />
-          ) : (
-            <></>
-          )}
+          {menu === "women" ? <hr className="hr-navigation" /> : <></>}
         </li>
         <li
           className="cursor-pointer"
@@ -75,11 +63,7 @@ const Navbar = () => {
           }}
         >
           <Link to="/kids">Kids</Link>{" "}
-          {menu === "kids" ? (
-            <hr className=" border-none w-full h-1 rounded-lg bg-red-500" />
-          ) : (
-            <></>
-          )}
+          {menu === "kids" ? <hr className="hr-navigation" /> : <></>}
         </li>
       </ul>
       <div className="flex items-center gap-11 w-">

@@ -1,7 +1,7 @@
 import React from "react";
-import hand_icon from "../assets/hand_icon.png";
-import arrow_icon from "../assets/arrow.png";
-import hero_image from "../assets/hero_image.png";
+import hand_icon from "./assets/hand_icon.png";
+import arrow_icon from "./assets/arrow.png";
+import hero_image from "./assets/hero_image.png";
 
 const Hero = () => {
   return (
@@ -18,12 +18,12 @@ const Hero = () => {
           <p className="text-[#171717] text-8xl font-bold">collections</p>
           <p className="text-[#171717] text-8xl font-bold">for everyon</p>
         </div>
-        <div className="flex justify-center items-center gap-4 w-80 h-16 rounded-3xl mt-7 text-white text-xl bg-red-600">
-          <div className="">Latest Collection</div>
-          <img className="" src={arrow_icon} alt="" />
+        <div className="flex-center-all gap-4 w-80 h-16 rounded-3xl mt-7 text-white text-xl bg-red-600">
+          <div>Latest Collection</div>
+          <img src={arrow_icon} alt="" />
         </div>
       </div>
-      <div className="flex-1 flex items-center justify-center">
+      <div className=" hidden lg:flex flex-1">
         <img src={hero_image} alt="" />
       </div>
     </div>

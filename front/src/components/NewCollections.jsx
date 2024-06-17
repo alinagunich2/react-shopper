@@ -1,6 +1,5 @@
 import React from "react";
-// import new_collection from "../assets/new_collections";
-import Item from "../Item/Item";
+import Item from "./Item";
 
 const NewCollections = () => {
   const [new_collection, setNew_collection] = React.useState([]);
@@ -8,9 +7,7 @@ const NewCollections = () => {
     fetch("http://localhost:4000/newcollections")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "new_collection");
         setNew_collection(data);
-        console.log(new_collection, "new_collection");
       });
   }, []);
   return (
@@ -19,7 +16,7 @@ const NewCollections = () => {
         NEW COLLECTIONS
       </h1>
       <hr className="w-52 h-1 rounded-xl bg-slate-700" />
-      <div className="mt-12 justify-center flex flex-wrap gap-7">
+      <div className="flex justify-center flex-wrap mt-12 gap-7">
         {new_collection.map((item, i) => {
           return <Item key={i} {...item} />;
         })}

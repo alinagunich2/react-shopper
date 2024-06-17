@@ -1,5 +1,5 @@
 import React from "react";
-import exclusive_image from "../assets/exclusive_image.png";
+import exclusive_image from "./assets/exclusive_image.png";
 const Offers = () => {
   return (
     <div className="offers flex m-auto px-40 mb-40 bg-custom-gradient">

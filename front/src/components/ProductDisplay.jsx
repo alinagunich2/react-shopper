@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import star_icon from "../assets/star_icon.png";
-import start_dull_icon from "../assets/star_dull_icon.png";
-import { ShopContext } from "../../context/ShopContext";
+import star_icon from "./assets/star_icon.png";
+import start_dull_icon from "./assets/star_dull_icon.png";
+import { ShopContext } from "../context/ShopContext";
 
 const ProductDisplay = (props) => {
   const { product } = props;
@@ -50,21 +50,11 @@ const ProductDisplay = (props) => {
             Select Size
           </h1>
           <div className="flex my-7 mx-0 p-0 gap-5">
-            <div className="py-4 px-6 bg-white border border-solid border-[#ebebeb] rounded-sm cursor-pointer">
-              S
-            </div>
-            <div className="py-4 px-6 bg-white border border-solid border-[#ebebeb] rounded-sm cursor-pointer">
-              M
-            </div>
-            <div className="py-4 px-6 bg-white border border-solid border-[#ebebeb] rounded-sm cursor-pointer">
-              L
-            </div>
-            <div className="py-4 px-6 bg-white border border-solid border-[#ebebeb] rounded-sm cursor-pointer">
-              XL
-            </div>
-            <div className="py-4 px-6 bg-white border border-solid border-[#ebebeb] rounded-sm cursor-pointer">
-              XXL
-            </div>
+            <div className="productDisplay-size">S</div>
+            <div className="productDisplay-size">M</div>
+            <div className="productDisplay-size">L</div>
+            <div className="productDisplay-size">XL</div>
+            <div className="productDisplay-size">XXL</div>
           </div>
         </div>
         <button

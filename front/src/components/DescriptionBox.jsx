@@ -4,10 +4,10 @@ const DescriptionBox = () => {
   return (
     <div className="my-32 mx-44">
       <div className="flex">
-        <div className="flex items-center justify-center text-base font-semibold w-44 h-16 border border-solid border-[#d0d0d0]">
+        <div className="flex-center-all text-base font-semibold w-44 h-16 border border-solid border-[#d0d0d0]">
           Description
         </div>
-        <div className="flex items-center justify-center text-base font-semibold w-44 h-16 border border-solid border-[#d0d0d0] bg-[#fbfbfb] text-[#555]">
+        <div className="flex-center-all text-base font-semibold w-44 h-16 border border-solid border-[#d0d0d0] bg-[#fbfbfb] text-[#555]">
           Reviews (122)
         </div>
       </div>

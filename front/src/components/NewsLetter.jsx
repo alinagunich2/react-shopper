@@ -2,16 +2,16 @@ import React from "react";
 
 const NewsLetter = () => {
   return (
-    <div className=" bg-custom-gradient pt-20 flex flex-col items-center justify-center m-auto px-36 mb-36 gap-7">
+    <div className="m-auto px-36 mb-36 gap-7 flex-center-all flex-col bg-custom-gradient pt-20">
       <h1 className="text-[#454545] text-5xl font-semibold">
         GetExclusive Ofeers On Your Email
       </h1>
       <p className="text-[#454545] text-xl">
         Subscribe to our newletter and stay updated
       </p>
-      <div className="flex items-center justify-between bg-white w-[500px] h-16 rounded-3xl">
+      <div className="flex justify-between border border-solid border-[#616161] bg-white w-[500px] rounded-3xl">
         <input
-          className="border border-solid border-[#v] ml-8 border-spacing-0 outline-none text-[#616161] text-base"
+          className="h-16 ml-8 outline-none text-[#616161] text-base"
           type="email"
           placeholder="Your Email id"
         />

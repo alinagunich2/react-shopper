@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import cross_icon from "../../assets/cross_icon.png";
-import "./ListProduct.css";
+import cross_icon from "./../assets/cross_icon.png";
 
 const ListProduct = () => {
   const [allproduct, setAllProducts] = useState([]);
@@ -9,7 +8,6 @@ const ListProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         setAllProducts(data);
-        console.log(data);
       });
   };
   useEffect(() => {
@@ -27,9 +25,9 @@ const ListProduct = () => {
     await fetchInfo();
   };
   return (
-    <div className="listproduct flex flex-col items-center w-full py-3 px-12 m-8 rounded-md bg-white">
+    <div className="flex flex-col items-center w-full py-3 px-12 m-8 rounded-md bg-white">
       <h1 className="text-xl font-bold mb-7">All Products List</h1>
-      <div className="listproduct-format-main">
+      <div className="listproduct-format-main w-full py-5 text-[#454545] text-base font-semibold">
         <p>Products</p>
         <p>Title</p>
         <p>Old Price</p>
@@ -37,26 +35,22 @@ const ListProduct = () => {
         <p>Category</p>
         <p>Remove</p>
       </div>
-      <div className="listproduct-allproduct">
+      <div>
         <hr />
         {allproduct.map((product, i) => {
           return (
             <div
               key={i}
-              className="listproduct-format-main list-format items-center font-medium"
+              className="listproduct-format-main w-full py-5 text-[#454545] text-base font-semibold list-format items-center font-medium"
             >
-              <img
-                src={product.image}
-                alt="image"
-                className="list-prod-item h-20"
-              />
+              <img src={product.image} alt="image" className=" h-20" />
               <p>{product.name}</p>
               <p>$ {product.old_price}</p>
               <p>$ {product.new_price}</p>
               <p>{product.category}</p>
               <img
                 onClick={() => remove_product(Number(product.id))}
-                className="listproduct-remove-icon
+                className="
                  cursor-pointer m-auto"
                 src={cross_icon}
                 alt="cross_icon"

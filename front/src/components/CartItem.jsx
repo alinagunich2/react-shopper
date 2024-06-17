@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-import { ShopContext } from "../../context/ShopContext";
-import remove_icon from "../assets/cart_cross_icon.png";
-import "./CartItem.css";
+import { ShopContext } from "../context/ShopContext";
+import remove_icon from "./assets/cart_cross_icon.png";
 const CartItem = () => {
   const { getTotalCartAmount, all_product, cartItem, removeToCart } =
     useContext(ShopContext);
@@ -20,7 +19,7 @@ const CartItem = () => {
         if (cartItem[e.id] > 0) {
           return (
             <div>
-              <div className=" text-lg font-medium">
+              <div className=" cartitems-main items-center text-lg font-medium">
                 <img className=" h-16" src={e.image} alt="" />
                 <p>{e.name}</p>
                 <p>$ {e.new_price}</p>

@@ -1,8 +1,0 @@
-.cartitems-main {
-  display: grid;
-  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
-}
-
-.cartitems-promobox {
-  width: 504px;
-}

@@ -1,12 +1,12 @@
 import React from "react";
-import footer_logo from "../assets/logo_big.png";
-import inst_icon from "../assets/instagram_icon.png";
-import pin_icon from "../assets/pintester_icon.png";
-import whats_icon from "../assets/whatsapp_icon.png";
+import footer_logo from "./assets/logo_big.png";
+import inst_icon from "./assets/instagram_icon.png";
+import pin_icon from "./assets/pintester_icon.png";
+import whats_icon from "./assets/whatsapp_icon.png";
 
 const Fooret = () => {
   return (
-    <div className="flex flex-col justify-center items-center gap-14">
+    <div className="flex-center-all flex-col gap-14">
       <div className="flex items-center gap-5">
         <img className="" src={footer_logo} alt="footer_logo" />
         <p className="text-[#383838] text-5xl font-bold">SHOPPER</p>

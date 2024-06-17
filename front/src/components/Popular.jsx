@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import data_product from "../assets/data";
-import Item from "../Item/Item";
+import Item from "./Item";
 
 const Popular = () => {
   let [popularProducts, setPopularProducts] = useState([]);
@@ -12,7 +11,7 @@ const Popular = () => {
       });
   }, []);
   return (
-    <div className="flex  flex-col items-center gap-3 mb-11">
+    <div className="flex flex-col items-center gap-3 my-11">
       <h1 className="text-[#171717] text-5xl font-semibold w-">
         POPULAR IN WOMEN
       </h1>
