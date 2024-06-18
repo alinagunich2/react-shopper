@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import { ShopContext } from "../context/ShopContext";
-import dropdown_icon from "../components/assets/dropdown_icon.svg";
+import React from "react";
 import Item from "../components/Item";
+import { useSelector } from "react-redux";
 
 const ShopCategory = (props) => {
-  const { all_product } = useContext(ShopContext);
+  const { all_product } = useSelector((state) => state.data);
 
   return (
     <div>

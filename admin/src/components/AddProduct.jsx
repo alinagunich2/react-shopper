@@ -1,4 +1,3 @@
-//import React from "react";
 import { useState } from "react";
 import upload_area from "./../assets/upload_area.svg";
 

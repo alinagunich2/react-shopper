@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
-import { ShopContext } from "../context/ShopContext";
+import React from "react";
 import remove_icon from "./assets/cart_cross_icon.png";
+import { useDispatch, useSelector } from "react-redux";
+import { getTotalCartAmount, removeToCart } from "../redax/dataSlice";
 const CartItem = () => {
-  const { getTotalCartAmount, all_product, cartItem, removeToCart } =
-    useContext(ShopContext);
+  const { all_product, cartItem, totalSum } = useSelector(
+    (state) => state.data
+  );
+  const dispatch = useDispatch();
+
   return (
     <div className=" my-24 mx-44">
       <div className="cartitems-main items-center gap-16 py-5 text-[#454545] text-lg font-semibold">
@@ -18,7 +22,7 @@ const CartItem = () => {
       {all_product.map((e) => {
         if (cartItem[e.id] > 0) {
           return (
-            <div>
+            <div key={e.id}>
               <div className=" cartitems-main items-center text-lg font-medium">
                 <img className=" h-16" src={e.image} alt="" />
                 <p>{e.name}</p>
@@ -29,7 +33,8 @@ const CartItem = () => {
                 <p>$ {e.new_price * cartItem[e.id]}</p>
                 <img
                   onClick={() => {
-                    removeToCart(e.id);
+                    dispatch(removeToCart(e.id));
+                    dispatch(getTotalCartAmount());
                   }}
                   className=" w-4 mx-10 cursor-pointer"
                   src={remove_icon}
@@ -47,7 +52,7 @@ const CartItem = () => {
           <div className="">
             <div className="flex justify-between py-4 border border-solid border-[#555]">
               <p>Subtatal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>${totalSum}</p>
             </div>
             <div className="flex justify-between py-4 border border-solid border-[#555]">
               <p>Shipping Free</p>
@@ -56,7 +61,7 @@ const CartItem = () => {
 
             <div className="flex justify-between py-4 border border-solid border-[#555]">
               <p>Total</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>${totalSum}</p>
             </div>
           </div>
           <button>PROCEED TO CHECKOUT</button>

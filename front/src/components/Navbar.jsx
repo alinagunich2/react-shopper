@@ -1,13 +1,13 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import logo from "./assets/logo.png";
 import cart_icon from "./assets/cart_icon.png";
 import { Link } from "react-router-dom";
-import { ShopContext } from "../context/ShopContext";
 import nav_dropdoun from "./assets/dropdown_icon.svg";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const { totalItem } = useSelector((state) => state.data);
   const [menu, setMenu] = useState("shop");
-  const { getTotalCartItems } = useContext(ShopContext);
   const menuRef = useRef();
   const dropdown_toggle = (e) => {
     menuRef.current.classList.toggle("nav-menu-visible");
@@ -89,7 +89,7 @@ const Navbar = () => {
           <img src={cart_icon} alt="cart_icon" />
         </Link>
         <div className=" w-5 h-5 flex justify-center items-center -mt-9 -ml-14 rounded-xl text-sm bg-red-500 text-white">
-          {getTotalCartItems()}
+          {totalItem}
         </div>
       </div>
     </div>

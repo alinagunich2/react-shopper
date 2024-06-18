@@ -6,12 +6,18 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import LoginSignup from "./pages/LoginSignup";
 import Fooret from "./components/Fooret";
+import React from "react";
 
 import men_banner from "./components/assets/banner_mens.png";
 import women_banner from "./components/assets/banner_women.png";
 import kid_banner from "./components/assets/banner_kids.png";
-
+import { useDispatch } from "react-redux";
+import { fetchData } from "./redax/asyncActions";
 function App() {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchData());
+  }, []);
   return (
     <div>
       <BrowserRouter>

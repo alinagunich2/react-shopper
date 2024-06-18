@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import star_icon from "./assets/star_icon.png";
 import start_dull_icon from "./assets/star_dull_icon.png";
-import { ShopContext } from "../context/ShopContext";
+import { useDispatch } from "react-redux";
+import { addToCart, getTotalCartAmount } from "../redax/dataSlice";
 
 const ProductDisplay = (props) => {
   const { product } = props;
-  const { addToCart, cartItem } = useContext(ShopContext);
+  const dispatch = useDispatch();
   const add = () => {
-    addToCart(product.id);
+    dispatch(addToCart(product.id));
+    dispatch(getTotalCartAmount());
   };
   return (
     <div className="mb-20 my-0 mx-40">
