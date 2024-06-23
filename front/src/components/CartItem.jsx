@@ -1,7 +1,7 @@
 import React from "react";
 import remove_icon from "./assets/cart_cross_icon.png";
 import { useDispatch, useSelector } from "react-redux";
-import { getTotalCartAmount, removeToCart } from "../redax/dataSlice";
+import { getTotalCartAmount, removeToCart } from "../redux/dataSlice";
 const CartItem = () => {
   const { all_product, cartItem, totalSum } = useSelector(
     (state) => state.data

@@ -14,10 +14,16 @@ const Navbar = () => {
     e.target.classList.toggle("open");
   };
   return (
-    <div className="flex flex-wrap justify-around gap-5  p-4">
+    <div className=" flex flex-wrap justify-around gap-2 sm:gap-5 p-4">
       <div className="flex items-center gap-3">
-        <img src={logo} alt="logo" />
-        <p className="text-[#171717] text-[38px] font-semibold">SHOPPER</p>
+        <img
+          className="block w-10 h-10 xs:w-14 xs:h-14 sm:w-16 sm:h-16 "
+          src={logo}
+          alt="logo"
+        />
+        <p className=" text-[#171717] text-[23px] xs:text-[28px] sm:text-[38px] font-semibold">
+          SHOPPER
+        </p>
       </div>
       <img
         onClick={dropdown_toggle}
@@ -69,7 +75,7 @@ const Navbar = () => {
       <div className="flex items-center gap-11 w-">
         {localStorage.getItem("auth-token") ? (
           <button
-            className="w-40 bg-blue-300 h-14  outline-0 text-xl font-medium rounded-3xl text-[#515151] border border-solid border-[#7a7a7a]"
+            className=" bg-blue-300 w-40 h-14 outline-0 text-xl font-medium rounded-3xl text-[#515151] border border-solid border-[#7a7a7a]"
             onClick={() => {
               localStorage.removeItem("auth-token");
               window.location.replace("/");
@@ -79,14 +85,16 @@ const Navbar = () => {
           </button>
         ) : (
           <Link to="/login">
-            <button className=" bg-white w-40 h-14 outline-0 text-xl font-medium border border-solid border-[#7a7a7a]">
+            <button className=" bg-white rounded-md  w-24 h-9 xs:w-28 xs:h-11 sm:w-40 sm:h-14 outline-0 text-xl font-medium border border-solid border-[#7a7a7a]">
               Login
             </button>
           </Link>
         )}
 
         <Link to="/cart">
-          <img src={cart_icon} alt="cart_icon" />
+          <div className="flex items-center w-9 h-9 sm:w-12 sm:h-12">
+            <img className=" w-full" src={cart_icon} alt="cart_icon" />
+          </div>
         </Link>
         <div className=" w-5 h-5 flex justify-center items-center -mt-9 -ml-14 rounded-xl text-sm bg-red-500 text-white">
           {totalItem}

@@ -2,7 +2,7 @@ import React from "react";
 import star_icon from "./assets/star_icon.png";
 import start_dull_icon from "./assets/star_dull_icon.png";
 import { useDispatch } from "react-redux";
-import { addToCart, getTotalCartAmount } from "../redax/dataSlice";
+import { addToCart, getTotalCartAmount } from "../redux/dataSlice";
 
 const ProductDisplay = (props) => {
   const { product } = props;

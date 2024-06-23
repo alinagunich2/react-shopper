@@ -12,7 +12,7 @@ import men_banner from "./components/assets/banner_mens.png";
 import women_banner from "./components/assets/banner_women.png";
 import kid_banner from "./components/assets/banner_kids.png";
 import { useDispatch } from "react-redux";
-import { fetchData } from "./redax/asyncActions";
+import { fetchData } from "./redux/asyncActions";
 function App() {
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -42,7 +42,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignup />} />
         </Routes>
-        <Fooret />
+        {/* <Fooret /> */}
       </BrowserRouter>
     </div>
   );
