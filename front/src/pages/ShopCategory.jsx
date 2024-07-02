@@ -6,14 +6,14 @@ const ShopCategory = (props) => {
   const { all_product } = useSelector((state) => state.data);
 
   return (
-    <div>
+    <div className="">
       <img
         className="block my-7 mx-auto w-3/4"
         src={props.banner}
         alt="props.banner"
       />
 
-      <div className="flex flex-wrap gap-3 mb-6 justify-center">
+      <div className="flex flex-wrap gap-7 md:gap-16 mb-6 justify-center">
         {all_product.map((item, i) => {
           if (props.category === item.category) {
             return <Item key={i} {...item} />;

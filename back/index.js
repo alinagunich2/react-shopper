@@ -159,7 +159,7 @@ app.post("/signup", async (req, res) => {
     },
   };
   const token = jwt.sign(data, "secret_ecom");
-  res.json({ success: true, token });
+  res.json({ success: true, token, name: user.name });
 });
 
 app.post("/login", async (req, res) => {
@@ -173,7 +173,7 @@ app.post("/login", async (req, res) => {
         },
       };
       const token = jwt.sign(data, "secret_ecom");
-      res.json({ success: true, token });
+      res.json({ success: true, token, name: user.name });
     } else {
       res.json({ success: false, errors: "wrong password" });
     }
