@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import hand_icon from "./assets/hand_icon.png";
 import arrow_icon from "./assets/arrow.png";
 import hero_image from "./assets/hero_image.png";
 
-const Hero = () => {
+const Hero = ({ setSet }) => {
   return (
     <div className="h-[90vh] bg-custom-gradient flex items-center flex-wrap">
       <div className=" pl-14 xs:pl-20 md:pl-44 flex-1 flex flex-col  justify-center gap-5 ">

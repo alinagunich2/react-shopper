@@ -11,6 +11,56 @@ const LoginSignup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [errors, setErrors] = React.useState({});
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!formData.username.trim()) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Email is required. Please fill in the email field.",
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "",
+      }));
+    }
+
+    if (!formData.email.trim()) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Email is required. Please fill in the email field.",
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "",
+      }));
+    }
+
+    if (!formData.password.trim()) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password is required. Please fill in the password field.",
+      }));
+    } else if (formData.password.trim().length < 8) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password should contain at least 8 characters.",
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "",
+      }));
+    }
+
+    if (!errors.password && !errors.username && !errors.email) {
+      state === "Login" ? login() : signUp();
+    }
+  };
+
   const login = async () => {
     let responseData;
     await fetch("http://localhost:4000/login", {
@@ -46,7 +96,6 @@ const LoginSignup = () => {
       .then((data) => {
         responseData = data;
       });
-
     if (responseData.success) {
       localStorage.setItem("auth-token", responseData.token);
       window.location.replace("/");
@@ -57,18 +106,28 @@ const LoginSignup = () => {
 
   return (
     <div className=" w-full bg-[#fce3fe] py-28">
-      <div className=" max-w-lg m-auto bg-white py-10 px-16">
+      <form
+        onSubmit={handleSubmit}
+        className=" max-w-lg m-auto bg-white py-10 px-16"
+      >
         <h1 className=" my-5 mx-0 text-5xl">{state}</h1>
         <div className="loginsignup-fields flex flex-col gap-7 mt-8">
           {state === "Sign Up" && (
-            <input
-              className="border border-solid border-[#c9c9c9] p-5 rounded-xl"
-              name="username"
-              value={formData.username}
-              onChange={(e) => changeHandler(e)}
-              type="text"
-              placeholder="Your Name"
-            />
+            <>
+              <input
+                className="border border-solid border-[#c9c9c9] p-5 rounded-xl"
+                name="username"
+                value={formData.username}
+                onChange={(e) => changeHandler(e)}
+                type="text"
+                placeholder="Your Name"
+              />
+              {errors.username && (
+                <p className="-mt-5" style={{ color: "red" }}>
+                  {errors.username}
+                </p>
+              )}
+            </>
           )}
           <input
             className="border border-solid border-[#c9c9c9] p-5 rounded-xl"
@@ -78,6 +137,11 @@ const LoginSignup = () => {
             type="email"
             placeholder="Your Email"
           />
+          {errors.email && (
+            <p className="-mt-5" style={{ color: "red" }}>
+              {errors.email}
+            </p>
+          )}
           <input
             className="border border-solid border-[#c9c9c9] p-5 rounded-xl"
             name="password"
@@ -86,18 +150,21 @@ const LoginSignup = () => {
             type="password"
             placeholder="Password"
           />
+          {errors.password && (
+            <p className="-mt-5" style={{ color: "red" }}>
+              {errors.password}
+            </p>
+          )}
         </div>
         <button
-          onClick={() => {
-            state === "Login" ? login() : signUp();
-          }}
+          type="submit"
           className=" min-w-72 rounded-xl h-14 text-white bg-red-400 mt-8  text-2xl font-medium cursor-pointer"
         >
           Continue
         </button>
         {state === "Sign Up" ? (
           <p className="loginsignup-login mt-5 text-[#5c5c5c] text-lg font-medium">
-            Already have an account?
+            Already have an account?&nbsp;
             <span
               className="text-[#ff4141] font-semibold cursor-pointer"
               onClick={() => {
@@ -125,7 +192,7 @@ const LoginSignup = () => {
           <input type="checkbox" name="" id="" />
           <p>By continuing, I agree to the terms of use & privacy policy</p>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
