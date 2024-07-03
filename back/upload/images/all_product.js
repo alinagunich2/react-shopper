@@ -377,14 +377,14 @@ export default all_product;
 //     "new_price": "85.0",
 //     "old_price": "120.5"
 //   },
-//   {
-//     "id": 7,
-//     "name": "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-//     "category": "women",
-//     "image": "http://localhost:4000/images/product_7.png",
-//     "new_price": "85.0",
-//     "old_price": "120.5"
-//   },
+// {
+//   "id": 7,
+//   "name": "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+//   "category": "women",
+//   "image": "http://localhost:4000/images/product_7.png",
+//   "new_price": "85.0",
+//   "old_price": "120.5"
+// },
 //   {
 //     "id": 8,
 //     "name": "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",

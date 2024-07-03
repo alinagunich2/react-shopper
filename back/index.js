@@ -101,6 +101,111 @@ app.post("/addproduct", async (req, res) => {
     name: req.body.name,
   });
 });
+
+const Cart = mongoose.model("Cart", {
+  id: {
+    type: Number,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  new_price: {
+    type: Number,
+    required: true,
+  },
+  old_price: {
+    type: Number,
+    required: true,
+  },
+  size: {
+    type: String,
+    required: true,
+  },
+  count: {
+    type: Number,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  avilable: {
+    type: Boolean,
+    default: true,
+  },
+});
+
+app.get("/cart", async (req, res) => {
+  let products = await Cart.find({});
+  console.log("all prod");
+  res.send(products);
+});
+
+app.post("/addcart", async (req, res) => {
+  let products = await Cart.find({});
+  console.log(products);
+  let id;
+  if (products.length > 0) {
+    let last_product_arry = products.slice(-1);
+    let last_product = last_product_arry[0];
+    id = last_product.id + 1;
+  } else {
+    id = 1;
+  }
+
+  const product = new Cart({
+    id: id,
+    name: req.body.name,
+    image: req.body.image,
+    category: req.body.category,
+    new_price: req.body.new_price,
+    old_price: req.body.old_price,
+    size: req.body.size,
+    count: req.body.count,
+  });
+  console.log(product);
+  await product.save();
+  console.log("save");
+  res.json({
+    success: true,
+    name: req.body.name,
+  });
+});
+
+app.post("/updatecart", async (req, res) => {
+  const updatedProducts = req.body;
+  await Cart.deleteMany({});
+  for (const updatedProduct of updatedProducts) {
+    const product = new Cart({
+      id: updatedProduct.id,
+      name: updatedProduct.name,
+      image: updatedProduct.image,
+      category: updatedProduct.category,
+      new_price: updatedProduct.new_price,
+      old_price: updatedProduct.old_price,
+      size: updatedProduct.size,
+      count: updatedProduct.count,
+    });
+    await product.save();
+  }
+
+  console.log("Cart updated");
+  res.json({
+    success: true,
+    message: "Cart updated successfully",
+  });
+});
+
 app.post("/removeproduct", async (req, res) => {
   await Product.findOneAndDelete({ id: req.body.id });
   console.log("remove");

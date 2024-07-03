@@ -27,7 +27,7 @@ code {
 }
 .cartitems-main {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .cartitems-promobox {
@@ -56,5 +56,5 @@ code {
   @apply border-none w-full h-1 rounded-lg bg-red-500;
 }
 .productDisplay-size {
-  @apply py-4 px-6 bg-white border border-solid border-[#ebebeb] rounded-sm cursor-pointer;
+  @apply py-4 px-6 bg-white border border-solid  rounded-sm cursor-pointer;
 }

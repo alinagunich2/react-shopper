@@ -12,12 +12,15 @@ import men_banner from "./components/assets/banner_mens.png";
 import women_banner from "./components/assets/banner_women.png";
 import kid_banner from "./components/assets/banner_kids.png";
 import { useDispatch } from "react-redux";
-import { fetchData } from "./redux/asyncActions";
+import { fetchDataCart, fetchDataProducts } from "./redux/asyncActions";
 function App() {
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(fetchData());
+    dispatch(fetchDataProducts());
+    dispatch(fetchDataCart());
+    console.log("tooo");
   }, []);
+
   return (
     <div className="contain">
       <BrowserRouter>
