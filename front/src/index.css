@@ -37,7 +37,7 @@ code {
 .bg-custom-gradient {
   background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
 }
-.navigation-dropdown.open {
+/* .navigation-dropdown.open {
   transform: rotate(0deg);
 }
 .nav-menu-visible {
@@ -47,7 +47,7 @@ code {
   height: 140vh;
   width: 100%;
   z-index: 0;
-}
+} */
 
 .flex-center-all {
   @apply flex justify-center items-center;

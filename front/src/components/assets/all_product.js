@@ -339,10 +339,12 @@ export default all_product;
 //   "rewiews":[
 //     {
 //       "name":"Alina",
+//           "star":2,
 //       "review":"Good blouse"
 //     },
 //     {
 //       "name":"Kat",
+//        "star":5,
 //       "review":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo non velit quaerat provident minima labore incidunt, cumque molestiae! Dolorum eius nemo mollitia, nihil quibusdam aspernatur modi quam fugit tenetur labore"
 //     }
 //   ]

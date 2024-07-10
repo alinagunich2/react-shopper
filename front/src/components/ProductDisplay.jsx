@@ -11,6 +11,7 @@ const ProductDisplay = (props) => {
     star: "",
     review: "",
   });
+
   const [errors, setErrors] = React.useState({});
   const changeHandler = async (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -59,6 +60,13 @@ const ProductDisplay = (props) => {
     }
     if (!errors.name && !errors.review && !errors.star) {
       dispatch(addReviews([form, product.id]));
+      setForm(() => {
+        return {
+          name: "",
+          star: "",
+          review: "",
+        };
+      });
     }
   };
 
@@ -70,15 +78,13 @@ const ProductDisplay = (props) => {
     dispatch(addToCart(prod));
   };
 
-  // if(product.reviews.length!==0){
-
-  // }
-  console.log(product);
-  let plusStar =
+  let plusStar = Math.round(
     product.rewiews.reduce((sum, item) => {
-      console.log(item.star, "KJWS");
+      console.log(item, "KJWS");
       return sum + Number(item.star);
-    }, 0) / product.rewiews.length;
+    }, 0) / product.rewiews.length
+  );
+  console.log(plusStar);
   let minStar = 5 - plusStar;
   let lengthPlusStar = Array.from(
     { length: plusStar },
@@ -106,17 +112,25 @@ const ProductDisplay = (props) => {
               {product.name}
             </h1>
             <div className="flex items-center mt-3 gap-1 text-[#1c1c1c] text-base">
-              {lengthPlusStar.map((item, index) => (
-                <div key={index}>
-                  <img src={star_icon} alt="" />
-                </div>
-              ))}
-              {lengthMinStar.length !== 0 &&
-                lengthMinStar.map((item, index) => (
-                  <div key={index}>
-                    <img src={start_dull_icon} alt="" />
-                  </div>
-                ))}
+              {product.rewiews.length === 0 ? (
+                Array.from({ length: 5 }, (_, index) => index).map((item) => {
+                  return <img src={star_icon} alt="" />;
+                })
+              ) : (
+                <>
+                  {lengthPlusStar.map((item, index) => (
+                    <div key={index}>
+                      <img src={star_icon} alt="" />
+                    </div>
+                  ))}
+                  {lengthMinStar.length !== 0 &&
+                    lengthMinStar.map((item, index) => (
+                      <div key={index}>
+                        <img src={start_dull_icon} alt="" />
+                      </div>
+                    ))}
+                </>
+              )}
               {product.rewiews.length === 0 ? (
                 <div>(0)</div>
               ) : (
@@ -226,7 +240,12 @@ const ProductDisplay = (props) => {
             <label className="block mb-2">
               <p className="text-gray-700">Your name</p>
               <input
-                value={form.name}
+                value={
+                  localStorage.getItem("username")
+                    ? localStorage.getItem("username")
+                    : form.name
+                }
+                disabled={localStorage.getItem("username")}
                 onChange={changeHandler}
                 name="name"
                 type="text"

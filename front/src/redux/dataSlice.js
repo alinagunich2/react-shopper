@@ -52,6 +52,7 @@ export const dataSlice = createSlice({
         findItemProduct.rewiews.push(action.payload[0]);
       }
       fetchDataUpdateProductReviews(state.all_product);
+      console.log("sjxna");
     },
   },
   extraReducers: (builder) => {

@@ -63,7 +63,7 @@ const Navbar = () => {
       />
       <ul
         ref={menuRef}
-        className="hidden md:flex-row flex-col lg:flex md:static absolute  md:top-0 sm:top-24 top-40 px-5 items-center gap-7 lg:gap-14 text-[#626262] text-xl font-medium bg-white justify-center"
+        className=" md:flex-row flex-col lg:flex md:static absolute  md:top-0 sm:top-24 top-40 px-5 items-center gap-7 lg:gap-14 text-[#626262] text-xl font-medium bg-white justify-center"
       >
         <li
           className="cursor-pointer"
@@ -126,6 +126,8 @@ const Navbar = () => {
                   className=" absolute top-8 md:top-10  bg-black w-20 md:w-24 h-9 md:h-10 outline-0 text-base md:text-lg font-medium rounded-xl text-white border border-solid border-[#7a7a7a]"
                   onClick={() => {
                     localStorage.removeItem("auth-token");
+                    localStorage.removeItem("username");
+                    localStorage.removeItem("data");
                     window.location.replace("/");
                   }}
                 >

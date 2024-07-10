@@ -118,7 +118,7 @@ app.post("/addproduct", async (req, res) => {
     old_price: req.body.old_price,
     rewiews: req.body.rewiews,
   });
-  console.log(product);
+
   await product.save();
   console.log("save");
   res.json({
