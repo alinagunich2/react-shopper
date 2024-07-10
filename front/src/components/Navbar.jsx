@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import logo from "./assets/logo.png";
+import burger from "./assets/burger.svg";
+import cross from "./assets/cross.png";
 import cart_icon from "./assets/cart_icon.png";
 import { Link } from "react-router-dom";
-import nav_dropdoun from "./assets/dropdown_icon.svg";
 import avatar from "./assets/avatar.png";
 import { useSelector } from "react-redux";
 
@@ -15,6 +16,7 @@ const Navbar = () => {
   const dropdown_toggle = (e) => {
     menuRef.current.classList.toggle("nav-menu-visible");
     e.target.classList.toggle("open");
+    window.scrollTo(0, 0);
   };
   const onClickBurger = () => {
     if (window.innerWidth < 768) {
@@ -57,56 +59,78 @@ const Navbar = () => {
       <img
         ref={dropdown}
         onClick={dropdown_toggle}
-        className="navigation-dropdown z-10 relative block lg:hidden w-7 -rotate-90 duration-500"
-        src={nav_dropdoun}
+        className="navigation-dropdown  block lg:hidden w-7 "
+        src={burger}
         alt="nav_dropdoun"
       />
-      <ul
-        ref={menuRef}
-        className=" md:flex-row flex-col lg:flex md:static absolute  md:top-0 sm:top-24 top-40 px-5 items-center gap-7 lg:gap-14 text-[#626262] text-xl font-medium bg-white justify-center"
-      >
-        <li
-          className="cursor-pointer"
-          onClick={() => {
-            setMenu("shop");
-            onClickBurger();
-          }}
-        >
-          <Link to="/">Shop</Link>{" "}
-          {menu === "shop" ? <hr className="hr-navigation" /> : <></>}
-        </li>
-        <li
-          className="cursor-pointer"
-          onClick={() => {
-            setMenu("men");
-            onClickBurger();
-          }}
-        >
-          <Link to="/mens">Men</Link>{" "}
-          {menu === "men" ? <hr className="hr-navigation" /> : <></>}
-        </li>
-        <li
-          className="cursor-pointer"
-          onClick={() => {
-            setMenu("women");
-            onClickBurger();
-          }}
-        >
-          <Link to="/womens">Women</Link>{" "}
-          {menu === "women" ? <hr className="hr-navigation" /> : <></>}
-        </li>
-        <li
-          className="cursor-pointer"
-          onClick={() => {
-            setMenu("kids");
-            onClickBurger();
-          }}
-        >
-          <Link to="/kids">Kids</Link>{" "}
-          {menu === "kids" ? <hr className="hr-navigation" /> : <></>}
-        </li>
-      </ul>
-      <div className="relative z-10 flex items-center gap-11 w-">
+      <div ref={menuRef} className="menu bg-white ">
+        <img
+          onClick={dropdown_toggle}
+          className="w-7 absolute top-10 right-10"
+          src={cross}
+          alt="nav_dropdoun"
+        />
+        <ul className=" flex flex-col gap-5 lg:flex-row text-center  text-[#626262] text-xl font-medium ">
+          <li
+            className="cursor-pointer"
+            onClick={() => {
+              setMenu("shop");
+              onClickBurger();
+            }}
+          >
+            <Link
+              className={menu === "shop" ? "border-b-2  border-red-600" : ""}
+              to="/"
+            >
+              Shop
+            </Link>{" "}
+          </li>
+          <li
+            className="cursor-pointer"
+            onClick={() => {
+              setMenu("men");
+              onClickBurger();
+            }}
+          >
+            <Link
+              className={menu === "men" ? "border-b-2  border-red-600" : ""}
+              to="/mens"
+            >
+              Men
+            </Link>{" "}
+          </li>
+          <li
+            className="cursor-pointer"
+            onClick={() => {
+              setMenu("women");
+              onClickBurger();
+            }}
+          >
+            <Link
+              className={menu === "women" ? "border-b-2  border-red-600" : ""}
+              to="/womens"
+            >
+              Women
+            </Link>{" "}
+          </li>
+          <li
+            className="cursor-pointer"
+            onClick={() => {
+              setMenu("kids");
+              onClickBurger();
+            }}
+          >
+            <Link
+              className={menu === "kids" ? "border-b-2  border-red-600" : ""}
+              to="/kids"
+            >
+              Kids
+            </Link>{" "}
+          </li>
+        </ul>
+      </div>
+
+      <div className=" flex items-center gap-11 w-">
         {localStorage.getItem("auth-token") ? (
           <>
             <div className="">

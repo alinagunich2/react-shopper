@@ -37,17 +37,9 @@ code {
 .bg-custom-gradient {
   background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
 }
-/* .navigation-dropdown.open {
+.navigation-dropdown.open {
   transform: rotate(0deg);
 }
-.nav-menu-visible {
-  display: flex;
-  position: fixed;
-  margin-top: -400px;
-  height: 140vh;
-  width: 100%;
-  z-index: 0;
-} */
 
 .flex-center-all {
   @apply flex justify-center items-center;
@@ -80,4 +72,23 @@ code {
 
 .animate-fadeOut {
   animation: fadeOut 3s ease-in-out;
+}
+.menu {
+  display: flex;
+}
+@media (max-width: 1023px) {
+  .menu {
+    display: none;
+  }
+}
+
+.nav-menu-visible {
+  margin-top: -20px;
+  position: fixed;
+  height: 110vh;
+  width: 100%;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
 }
