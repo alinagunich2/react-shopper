@@ -1,7 +1,7 @@
 import React from "react";
 import remove_icon from "./assets/cart_cross_icon.png";
 import { useDispatch, useSelector } from "react-redux";
-import { getTotalCartAmount, removeToCart } from "../redux/dataSlice";
+import { removeToCart } from "../redux/dataSlice";
 const CartItem = () => {
   const { cartItem, totalSum } = useSelector((state) => state.data);
   const dispatch = useDispatch();
@@ -31,16 +31,15 @@ const CartItem = () => {
                     <p className="mr-2">$ {e.new_price}</p>
 
                     <div className="flex mr-2">
-                      <span className=" cursor-pointer">+</span>
+                      {/* <span className=" cursor-pointer">+</span> */}
                       <p className="mx-2">{e.count}</p>
-                      <span className=" cursor-pointer">-</span>
+                      {/* <span className=" cursor-pointer">-</span> */}
                     </div>
 
                     <p className="mr-2">$ {e.new_price * e.count}</p>
                     <img
                       onClick={() => {
-                        dispatch(removeToCart(e.id));
-                        dispatch(getTotalCartAmount());
+                        dispatch(removeToCart(e));
                       }}
                       className="mr-2 w-4 mx-10 cursor-pointer"
                       src={remove_icon}

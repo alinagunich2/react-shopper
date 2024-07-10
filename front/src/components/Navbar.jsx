@@ -27,7 +27,6 @@ const Navbar = () => {
 
   React.useEffect(() => {
     const handleClickOutside = (event) => {
-      console.log(logoutRef.current);
       if (logoutRef.current && !logoutRef.current.contains(event.target)) {
         setButton(false);
       }

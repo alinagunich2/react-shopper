@@ -58,3 +58,26 @@ code {
 .productDisplay-size {
   @apply py-4 px-6 bg-white border border-solid  rounded-sm cursor-pointer;
 }
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.animate-fadeOut {
+  animation: fadeOut 3s ease-in-out;
+}

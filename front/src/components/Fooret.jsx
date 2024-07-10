@@ -52,7 +52,7 @@ const Fooret = () => {
       </div>
       <div className="flex flex-col items-center gap-7 w-full mb-9 text-[#1a1a1a] text-xl">
         <hr className="w-3/4 border-spacing-0 rounded-xl h-1 bg-slate-300" />
-        <p className="text-base sm:text-xl">Copyright @2023</p>
+        <p className="text-base sm:text-xl">Copyright @2024</p>
       </div>
     </div>
   );

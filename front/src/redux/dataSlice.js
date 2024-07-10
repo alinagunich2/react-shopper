@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchDataProducts, fetchDataUpdateCart } from "./asyncActions";
+import {
+  fetchDataProducts,
+  fetchDataUpdateCart,
+  fetchDataUpdateProductReviews,
+} from "./asyncActions";
 import { fetchDataCart } from "./asyncActions";
 
 const initialState = {
@@ -19,52 +23,50 @@ export const dataSlice = createSlice({
 
     addToCart(state, action) {
       state.totalItem++;
+      state.totalSum += action.payload.new_price * action.payload.count;
 
       let findCartItemSize = state.cartItem.find(
         (i) =>
           i.size === action.payload.size && i.image === action.payload.image
       );
-      console.log(findCartItemSize);
       if (findCartItemSize) {
         findCartItemSize.count++;
-        console.log("yes");
       } else {
         state.cartItem = [...state.cartItem, action.payload];
-        console.log("no");
       }
       fetchDataUpdateCart(state.cartItem);
     },
     removeToCart(state, action) {
-      // state.cartItem = {
-      //   ...state.cartItem,
-      //   [action.payload]: state.cartItem[action.payload] - 1,
-      // };
-      // state.totalItem--;
-      console.log("remove");
+      state.cartItem = state.cartItem.filter((i) => {
+        return i._id !== action.payload._id || i.size !== action.payload.size;
+      });
+      state.totalItem -= action.payload.count;
+      state.totalSum -= action.payload.new_price * action.payload.count;
+      fetchDataUpdateCart(state.cartItem);
     },
-    getTotalCartAmount(state) {
-      state.totalSum = 0;
-      for (const item in state.cartItem) {
-        if (state.cartItem[item] > 0) {
-          let itemInfo = state.all_product.find(
-            (product) => product.id === Number(item)
-          );
-          state.totalSum += itemInfo.new_price * state.cartItem[item];
-        }
+    addReviews(state, action) {
+      let findItemProduct = state.all_product.find(
+        (i) => i.id === action.payload[1]
+      );
+      if (findItemProduct) {
+        findItemProduct.rewiews.push(action.payload[0]);
       }
+      fetchDataUpdateProductReviews(state.all_product);
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchDataProducts.fulfilled, (state, action) => {
-      console.log("fetchDataProducts");
       state.all_product = action.payload;
     });
     builder.addCase(fetchDataCart.fulfilled, (state, action) => {
-      console.log("fetchDataCart");
       state.cartItem = action.payload;
       state.cartItem.forEach((i) => {
-        console.log(i.count);
         state.totalItem = state.totalItem + i.count;
+      });
+
+      state.cartItem.forEach((item) => {
+        state.totalSum +=
+          item.count > 1 ? item.new_price * item.count : item.new_price;
       });
     });
   },
@@ -74,8 +76,8 @@ export const {
   setAllProducts,
   addToCart,
   removeToCart,
-  getTotalCartAmount,
   summTotalItem,
+  addReviews,
 } = dataSlice.actions;
 
 export default dataSlice.reducer;

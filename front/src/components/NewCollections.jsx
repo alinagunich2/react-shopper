@@ -4,7 +4,7 @@ import Item from "./Item";
 const NewCollections = () => {
   const [new_collection, setNew_collection] = React.useState([]);
   React.useEffect(() => {
-    fetch("http://localhost:4000/newcollections")
+    fetch("http://localhost:4001/newcollections")
       .then((res) => res.json())
       .then((data) => {
         setNew_collection(data);

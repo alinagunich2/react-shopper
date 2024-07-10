@@ -3,21 +3,23 @@ import React from "react";
 const NewsLetter = () => {
   let [email, setEmail] = React.useState("");
   let [emailSend, setEmailSend] = React.useState(false);
+
   let hendEmail = (e) => {
     setEmail(() => e.target.value);
   };
   let sendEmail = (e) => {
     e.preventDefault();
     setEmail(() => "");
-    setEmailSend(() => true);
+    setEmailSend(true);
   };
+
   return (
     <div className="m-auto px-10 md:px-36 mb-36 gap-7 flex-center-all flex-col bg-custom-gradient pt-20">
       <h1 className=" text-[#454545] text-3xl sm:text-5xl md:text-7xl font-semibold text-center md:text-left">
         GetExclusive Ofeers On Your Email
       </h1>
       {!emailSend ? (
-        <>
+        <div>
           <p className="text-[#454545] text-xl">
             Subscribe to our newletter and stay updated
           </p>
@@ -36,9 +38,9 @@ const NewsLetter = () => {
               Subscribe
             </button>
           </form>
-        </>
+        </div>
       ) : (
-        <p className="mt-10 text-[#454545] text-xl sm:text-2xl md:text-4xl ">
+        <p className="mt-10 text-[#454545] text-xl sm:text-2xl md:text-4xl animate-fadeIn">
           Email sended &#129392;
         </p>
       )}

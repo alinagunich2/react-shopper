@@ -1,4 +1,4 @@
-const port = 4000;
+const port = 4001;
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -64,6 +64,10 @@ const Product = mongoose.model("Product", {
     type: Number,
     required: true,
   },
+  rewiews: {
+    type: Array,
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -72,6 +76,26 @@ const Product = mongoose.model("Product", {
     type: Boolean,
     default: true,
   },
+});
+
+app.post("/updateproduct", async (req, res) => {
+  const updatedProducts = req.body;
+  await Product.deleteMany({});
+  for (const updatedProduct of updatedProducts) {
+    const product = new Product({
+      id: updatedProduct.id,
+      name: updatedProduct.name,
+      image: updatedProduct.image,
+      category: updatedProduct.category,
+      new_price: updatedProduct.new_price,
+      old_price: updatedProduct.old_price,
+      size: updatedProduct.size,
+      count: updatedProduct.count,
+      rewiews: updatedProduct.rewiews,
+    });
+    await product.save();
+  }
+  console.log("updatedProducts");
 });
 
 app.post("/addproduct", async (req, res) => {
@@ -92,6 +116,7 @@ app.post("/addproduct", async (req, res) => {
     category: req.body.category,
     new_price: req.body.new_price,
     old_price: req.body.old_price,
+    rewiews: req.body.rewiews,
   });
   console.log(product);
   await product.save();
@@ -99,6 +124,31 @@ app.post("/addproduct", async (req, res) => {
   res.json({
     success: true,
     name: req.body.name,
+  });
+});
+
+app.post("/updateproduct", async (req, res) => {
+  const updatedProducts = req.body;
+  await Product.deleteMany({});
+  for (const updatedProduct of updatedProducts) {
+    const product = new Product({
+      id: updatedProduct.id,
+      name: updatedProduct.name,
+      image: updatedProduct.image,
+      category: updatedProduct.category,
+      new_price: updatedProduct.new_price,
+      old_price: updatedProduct.old_price,
+      size: updatedProduct.size,
+      count: updatedProduct.count,
+      rewiews: updatedProduct.rewiews,
+    });
+    await product.save();
+  }
+
+  console.log("Cart updated");
+  res.json({
+    success: true,
+    message: "Cart updated successfully",
   });
 });
 
@@ -218,6 +268,7 @@ app.post("/removeproduct", async (req, res) => {
 app.get("/allproducts", async (req, res) => {
   let products = await Product.find({});
   console.log("all prod");
+  console.log(products);
   res.send(products);
 });
 
@@ -310,11 +361,3 @@ app.listen(port, (error) => {
     console.log(error);
   }
 });
-
-// {
-//     "name":"product 123",
-//     "id":22,
-//     "old_price":123,
-//     "new_price":1,
-//     "image": "http://localhost:4000/images/product_34.png",
-//     "category": "kid"

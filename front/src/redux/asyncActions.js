@@ -5,7 +5,7 @@ export const fetchDataProducts = createAsyncThunk(
 
   async () => {
     try {
-      const response = await fetch("http://localhost:4000/allproducts");
+      const response = await fetch("http://localhost:4001/allproducts");
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -22,7 +22,7 @@ export const fetchDataCart = createAsyncThunk(
 
   async () => {
     try {
-      const response = await fetch("http://localhost:4000/cart");
+      const response = await fetch("http://localhost:4001/cart");
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -37,7 +37,7 @@ export const fetchDataCart = createAsyncThunk(
 
 export async function fetchDataUpdateCart(dataCart) {
   try {
-    const response = await fetch("http://localhost:4000/updatecart", {
+    const response = await fetch("http://localhost:4001/updatecart", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -49,7 +49,26 @@ export async function fetchDataUpdateCart(dataCart) {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log(data, "errrrr");
+    return data;
+  } catch (error) {
+    console.error("Fetch error:", error);
+    throw error;
+  }
+}
+export async function fetchDataUpdateProductReviews(dataProducts) {
+  try {
+    const response = await fetch("http://localhost:4001/updateproduct", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataProducts),
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
     return data;
   } catch (error) {
     console.error("Fetch error:", error);
