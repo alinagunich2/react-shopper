@@ -1,5 +1,3 @@
-import React from "react";
-
 const DescriptionBox = () => {
   return (
     <div className="my-32 mx-44">

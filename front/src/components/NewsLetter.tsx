@@ -1,13 +1,13 @@
 import React from "react";
 
 const NewsLetter = () => {
-  let [email, setEmail] = React.useState("");
-  let [emailSend, setEmailSend] = React.useState(false);
+  let [email, setEmail] = React.useState<string>("");
+  let [emailSend, setEmailSend] = React.useState<boolean>(false);
 
-  let hendEmail = (e) => {
+  let hendEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(() => e.target.value);
   };
-  let sendEmail = (e) => {
+  let sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEmail(() => "");
     setEmailSend(true);

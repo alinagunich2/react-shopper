@@ -1,9 +1,10 @@
-import React from "react";
 import remove_icon from "./assets/cart_cross_icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { removeToCart } from "../redux/dataSlice";
+import { RootState } from "../redux/store";
+import { ProductType } from "../type/product.type";
 const CartItem = () => {
-  const { cartItem, totalSum } = useSelector((state) => state.data);
+  const { cartItem, totalSum } = useSelector((state: RootState) => state.data);
   const dispatch = useDispatch();
 
   return (
@@ -21,7 +22,7 @@ const CartItem = () => {
               <p className="mr-2">Remove</p>
             </div>
             <hr className="h-1 bg-slate-200 border-spacing-0" />
-            {cartItem.map((e, i) => {
+            {cartItem.map((e: ProductType, i) => {
               return (
                 <div key={i}>
                   <div className=" cartitems-main items-center text-lg font-medium">

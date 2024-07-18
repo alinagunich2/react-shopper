@@ -3,8 +3,13 @@ import star_icon from "./assets/star_icon.png";
 import start_dull_icon from "./assets/star_dull_icon.png";
 import { useDispatch } from "react-redux";
 import { addToCart, addReviews } from "../redux/dataSlice";
+import { ProductReviewsType, ProductType } from "../type/product.type";
 
-const ProductDisplay = (props) => {
+type propsType = {
+  product: ProductType;
+};
+
+const ProductDisplay = (props: propsType) => {
   const dispatch = useDispatch();
   const [form, setForm] = React.useState({
     name: "",
@@ -12,11 +17,15 @@ const ProductDisplay = (props) => {
     review: "",
   });
 
-  const [errors, setErrors] = React.useState({});
-  const changeHandler = async (e) => {
+  const [errors, setErrors] = React.useState<{
+    name?: string;
+    review?: string;
+    star?: string;
+  }>({});
+  const changeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.name.trim()) {
       setErrors((prevErrors) => ({
@@ -78,12 +87,16 @@ const ProductDisplay = (props) => {
     dispatch(addToCart(prod));
   };
 
-  let plusStar = Math.round(
-    product.rewiews.reduce((sum, item) => {
-      console.log(item, "KJWS");
-      return sum + Number(item.star);
-    }, 0) / product.rewiews.length
-  );
+  let plusStar = 0;
+
+  if (product.rewiews) {
+    plusStar = Math.round(
+      product.rewiews.reduce((sum, item: ProductReviewsType) => {
+        return sum + Number(item.star);
+      }, 0) / product.rewiews.length
+    );
+  }
+
   console.log(plusStar);
   let minStar = 5 - plusStar;
   let lengthPlusStar = Array.from(
@@ -111,7 +124,7 @@ const ProductDisplay = (props) => {
               {product.name}
             </h1>
             <div className="flex items-center mt-3 gap-1 text-[#1c1c1c] text-base">
-              {product.rewiews.length === 0 ? (
+              {product.rewiews?.length === 0 ? (
                 Array.from({ length: 5 }, (_, index) => index).map((item) => {
                   return <img src={star_icon} alt="" />;
                 })
@@ -130,10 +143,10 @@ const ProductDisplay = (props) => {
                     ))}
                 </>
               )}
-              {product.rewiews.length === 0 ? (
+              {product.rewiews?.length === 0 ? (
                 <div>(0)</div>
               ) : (
-                <div> ({product.rewiews.length})</div>
+                <div> ({product.rewiews?.length})</div>
               )}
             </div>
             <div className="flex  mx-0 my-10 gap-8 text-2xl font-bold">
@@ -186,21 +199,21 @@ const ProductDisplay = (props) => {
         <div className="flex">
           <div className="flex-center-all text-base font-semibold w-44 h-16 border border-solid border-[#d0d0d0] bg-[#fbfbfb] text-[#555]">
             Reviews&nbsp;
-            {product.rewiews.length === 0 ? (
+            {product.rewiews?.length === 0 ? (
               <div>(0)</div>
             ) : (
-              <div> ({product.rewiews.length})</div>
+              <div> ({product.rewiews?.length})</div>
             )}
           </div>
         </div>
         <div className=" h-44 overflow-y-auto flex flex-col gap-6 border border-solid border-[#d0d0d0] px-5 sm:px-9 py-4">
-          {product.rewiews.length !== 0 ? (
+          {product.rewiews?.length !== 0 ? (
             <div className="">
-              {product.rewiews.map((item, index) => {
+              {product.rewiews?.map((item: ProductReviewsType, index) => {
                 return (
                   <div
                     className={`pb-3 pt-3 ${
-                      product.rewiews.length === index + 1
+                      product.rewiews?.length === index + 1
                         ? ""
                         : "border-b-2 border-[#d0d0d0]"
                     } `}
@@ -211,11 +224,16 @@ const ProductDisplay = (props) => {
                       <p>{item.name}</p>
                       <div className="flex h-3 ">
                         {Array.from(
-                          { length: item.star },
+                          { length: Number(item.star) },
                           (_, index) => index
                         ).map((item) => {
                           return (
-                            <img key={item} width={12} src={star_icon} alt="" />
+                            <img
+                              key={index}
+                              width={12}
+                              src={star_icon}
+                              alt=""
+                            />
                           );
                         })}
                       </div>
@@ -239,12 +257,8 @@ const ProductDisplay = (props) => {
             <label className="block mb-2">
               <p className="text-gray-700">Your name</p>
               <input
-                value={
-                  localStorage.getItem("username")
-                    ? localStorage.getItem("username")
-                    : form.name
-                }
-                disabled={localStorage.getItem("username")}
+                value={localStorage.getItem("username") ?? form.name}
+                disabled={!!(localStorage.getItem("username") as string)}
                 onChange={changeHandler}
                 name="name"
                 type="text"

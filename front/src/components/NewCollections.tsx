@@ -1,5 +1,6 @@
 import React from "react";
 import Item from "./Item";
+import { ProductType } from "../type/product.type";
 
 const NewCollections = () => {
   const [new_collection, setNew_collection] = React.useState([]);
@@ -17,7 +18,7 @@ const NewCollections = () => {
       </h2>
       <hr className=" w-36 sm:w-52 h-1 rounded-xl bg-slate-700" />
       <div className="mt-12 justify-center flex flex-wrap gap-7">
-        {new_collection.map((item, i) => {
+        {new_collection.map((item: ProductType, i) => {
           return <Item key={i} {...item} />;
         })}
       </div>

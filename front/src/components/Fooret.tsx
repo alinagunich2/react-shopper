@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "./assets/logo_big.png";
 import inst_icon from "./assets/instagram_icon.png";
 import pin_icon from "./assets/pintester_icon.png";
@@ -8,18 +7,18 @@ import { Link } from "react-router-dom";
 const Fooret = () => {
   return (
     <div className=" pt-7 px-5 flex-center-all flex-col gap-8 sm:gap-14">
-      {/* <Link to="/"> */}
-      <div className=" z-10 flex items-center gap-3">
-        <img
-          className="block w-10 h-10 xs:w-14 xs:h-14 sm:w-16 sm:h-16 "
-          src={logo}
-          alt="logo"
-        />
-        <p className=" text-[#171717] text-[23px] xs:text-[28px] sm:text-[38px] font-semibold">
-          SHOPPER
-        </p>
-      </div>
-      {/* </Link> */}
+      <Link to="/">
+        <div className=" z-10 flex items-center gap-3">
+          <img
+            className="block w-10 h-10 xs:w-14 xs:h-14 sm:w-16 sm:h-16 "
+            src={logo}
+            alt="logo"
+          />
+          <p className=" text-[#171717] text-[23px] xs:text-[28px] sm:text-[38px] font-semibold">
+            SHOPPER
+          </p>
+        </div>
+      </Link>
       <ul className="flex flex-wrap justify-center gap-6 sm:gap-10 text-[#252525] text-base sm:text-xl">
         <li className="cursor-pointer hover:border-gray-400 border-b-2 border-solid border-transparent transition-all duration-300 ease-in-out">
           Company
