@@ -2,7 +2,6 @@ import React from "react";
 import hand_icon from "./assets/hand_icon.png";
 import arrow_icon from "./assets/arrow.png";
 import hero_image from "./assets/hero_image.png";
-import { useSelector } from "react-redux";
 
 const Hero = () => {
   return (
@@ -29,7 +28,7 @@ const Hero = () => {
             for everyon
           </p>
         </div>
-        <div className="flex-center-all gap-4 w-56 h-12 xs:w-64 xs:h-12 sm:w-80 sm:h-16 rounded-3xl mt-7 text-white text-xl bg-red-600">
+        <button className=" cursor-pointer hover:bg-red-500  transition-all duration-300 ease-in-out flex-center-all gap-4 w-56 h-12 xs:w-64 xs:h-12 sm:w-80 sm:h-16 rounded-3xl mt-7 text-white text-xl bg-red-600">
           <div className="text-[14px] xs:text-[16px] sm:text-[20px]">
             Latest Collection
           </div>
@@ -38,9 +37,9 @@ const Hero = () => {
             src={arrow_icon}
             alt=""
           />
-        </div>
+        </button>
       </div>
-      <div className=" hidden lg:flex flex-1">
+      <div className=" hero-img  lg:flex flex-1">
         <img src={hero_image} alt="" />
       </div>
     </div>

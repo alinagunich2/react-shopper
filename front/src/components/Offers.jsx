@@ -13,11 +13,11 @@ const Offers = () => {
         <p className="text-[#171717] text-base sm:text-xl md:text-2xl font-semibold ">
           ONLY ON BEST SELLERS PRODUCTS
         </p>
-        <button className="w-56 h-12 xs:w-64 xs:h-12 sm:w-80 sm:h-16 text-[14px] xs:text-[16px] sm:text-[20px] rounded-3xl bg-red-600 border-spacing-0 text-white text-2xl font-medium mt-8 cursor-pointer">
+        <button className="hover:bg-red-500  transition-all duration-300 ease-in-out w-56 h-12 xs:w-64 xs:h-12 sm:w-80 sm:h-16 text-[14px] xs:text-[16px] sm:text-[20px] rounded-3xl bg-red-600 border-spacing-0 text-white text-2xl font-medium mt-8 cursor-pointer">
           Check Now
         </button>
       </div>
-      <div className=" hidden sm:flex items-end">
+      <div className="offers-img sm:flex items-end">
         <img src={exclusive_image} alt="exclusive_image" />
       </div>
     </div>

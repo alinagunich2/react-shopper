@@ -94,20 +94,19 @@ const ProductDisplay = (props) => {
 
   return (
     <>
-      <div className="mb-20 my-0 mx-40">
-        <div className="gap-4">
-          <div className="mb-5 flex justify-center">
+      <div className="mb-20 my-0 mx-10 md:mx-24 flex lg:flex-row flex-col">
+        <div className=" flex gap-4 justify-center lg:justify-start sm:flex-row flex-col">
+          <div className=" flex justify-center w-full sm:w-[470px] ">
             <img src={product.image} alt="" />
           </div>
-          <div className="flex gap-4 justify-center">
-            <img className="h-40" src={product.image} alt="" />
-            <img className="h-40" src={product.image} alt="" />
-            <img className="h-40" src={product.image} alt="" />
-            <img className="h-40" src={product.image} alt="" />
+          <div className="sm:gap-0 gap-4 flex flex-row flex-wrap sm:flex-nowrap sm:flex-col justify-center sm:justify-between">
+            <img className="h-24 sm:h-40 mb-4" src={product.image} alt="" />
+            <img className="h-24 sm:h-40 mb-4" src={product.image} alt="" />
+            <img className="h-24 sm:h-40" src={product.image} alt="" />
           </div>
         </div>
-        <div>
-          <div className="flex mx-0 my-16 flex-col">
+        <div className="-ml-3 lg:ml-6 max-w-screen-sm">
+          <div className="flex mt-14 lg:-mt-11 flex-col">
             <h1 className="text-[#3d3d3d] text-4xl font-bold">
               {product.name}
             </h1>
@@ -144,7 +143,7 @@ const ProductDisplay = (props) => {
               <div className="text-[#ff4141]">${product.new_price}</div>
             </div>
           </div>
-          <div>
+          <div className="h-26 sm:h-24">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
             rem doloremque facilis magni aliquam optio beatae numquam id hic ex
             vero, eveniet ad deserunt maiores dolorem laudantium sit! Optio,
@@ -154,7 +153,7 @@ const ProductDisplay = (props) => {
             <h1 className="mt-14 text-[#656565] text-xl font-semibold">
               Select Size
             </h1>
-            <div className="flex my-7 mx-0 p-0 gap-5 ">
+            <div className="flex my-7 mx-0 p-0 gap-5 flex-wrap sm:flex-nowrap">
               {sizes.map((item, i) => (
                 <div
                   key={i}
@@ -183,7 +182,7 @@ const ProductDisplay = (props) => {
           </button>
         </div>
       </div>
-      <div className="mb-32 mx-24">
+      <div className="mb-32 mx-10 sm:mx-20  lg:max-w-2xl">
         <div className="flex">
           <div className="flex-center-all text-base font-semibold w-44 h-16 border border-solid border-[#d0d0d0] bg-[#fbfbfb] text-[#555]">
             Reviews&nbsp;
@@ -194,7 +193,7 @@ const ProductDisplay = (props) => {
             )}
           </div>
         </div>
-        <div className=" h-44 overflow-y-auto flex flex-col gap-6 border border-solid border-[#d0d0d0] px-9 py-4 pb\">
+        <div className=" h-44 overflow-y-auto flex flex-col gap-6 border border-solid border-[#d0d0d0] px-5 sm:px-9 py-4">
           {product.rewiews.length !== 0 ? (
             <div className="">
               {product.rewiews.map((item, index) => {
@@ -227,7 +226,7 @@ const ProductDisplay = (props) => {
               })}
             </div>
           ) : (
-            <div>
+            <div className=" flex justify-center mt-0 sm:mt-8">
               There are no reviews. Please add if you purchased this product.{" "}
             </div>
           )}

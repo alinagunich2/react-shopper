@@ -7,14 +7,16 @@ import { Link } from "react-router-dom";
 import avatar from "./assets/avatar.png";
 import { useSelector } from "react-redux";
 
-const Navbar = () => {
+const Navbar = React.memo(() => {
   const { totalItem } = useSelector((state) => state.data);
   const [menu, setMenu] = useState("shop");
   const menuRef = useRef();
+  const crossRef = useRef();
   const dropdown = useRef();
 
   const dropdown_toggle = (e) => {
     menuRef.current.classList.toggle("nav-menu-visible");
+    crossRef.current.classList.toggle("cross-visible");
     e.target.classList.toggle("open");
     window.scrollTo(0, 0);
   };
@@ -42,7 +44,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className=" w-full flex z-10 flex-wrap justify-around gap-2 sm:gap-5 p-4 bg-white">
+    <div className=" w-full flex   z-10 flex-wrap justify-around gap-2 sm:gap-5 p-4 bg-white">
       <Link to="/">
         <div className=" z-10 flex items-center gap-3">
           <img
@@ -59,18 +61,19 @@ const Navbar = () => {
       <img
         ref={dropdown}
         onClick={dropdown_toggle}
-        className="navigation-dropdown  block lg:hidden w-7 "
+        className="cursor-pointer navigation-dropdown  block lg:hidden w-7 "
         src={burger}
         alt="nav_dropdoun"
       />
       <div ref={menuRef} className="menu bg-white ">
         <img
+          ref={crossRef}
           onClick={dropdown_toggle}
-          className="w-7 absolute top-10 right-10"
+          className="icon-cross cursor-pointer w-7 absolute top-10 right-10 "
           src={cross}
           alt="nav_dropdoun"
         />
-        <ul className=" flex flex-col gap-5 lg:flex-row text-center  text-[#626262] text-xl font-medium ">
+        <ul className=" flex items-center  flex-col gap-5 lg:flex-row text-center  text-[#626262] text-xl font-medium ">
           <li
             className="cursor-pointer"
             onClick={() => {
@@ -147,7 +150,7 @@ const Navbar = () => {
               {button && (
                 <button
                   ref={logoutRef}
-                  className=" absolute top-8 md:top-10  bg-black w-20 md:w-24 h-9 md:h-10 outline-0 text-base md:text-lg font-medium rounded-xl text-white border border-solid border-[#7a7a7a]"
+                  className="hover:border-[#ae9494] transition-all duration-300 absolute top-8 md:top-10  bg-black w-20 md:w-24 h-9 md:h-10 outline-0 text-base md:text-lg font-medium rounded-xl text-white border border-solid border-[#7a7a7a]"
                   onClick={() => {
                     localStorage.removeItem("auth-token");
                     localStorage.removeItem("username");
@@ -155,7 +158,10 @@ const Navbar = () => {
                     window.location.replace("/");
                   }}
                 >
-                  Logout
+                  <p className="hover:scale-110  transition-all duration-300 ease-in-out">
+                    {" "}
+                    Logout
+                  </p>
                 </button>
               )}
             </div>
@@ -163,8 +169,11 @@ const Navbar = () => {
         ) : (
           <>
             <Link to="/login">
-              <button className=" bg-white rounded-md  w-24 h-9 xs:w-28 xs:h-11 sm:w-40 sm:h-14 outline-0 text-xl font-medium border border-solid border-[#7a7a7a]">
-                Login
+              <button className="hover:border-[#ae9494] transition-all duration-300 ease-in-out bg-white rounded-md  w-24 h-9 xs:w-28 xs:h-11 sm:w-40 sm:h-14 outline-0 text-xl font-medium border border-solid border-[#7a7a7a]">
+                <p className="hover:scale-110  transition-all duration-300 ease-in-out">
+                  {" "}
+                  Login
+                </p>
               </button>
             </Link>
           </>
@@ -181,6 +190,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Navbar;
