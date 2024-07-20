@@ -10,7 +10,7 @@ const Item = (props: ProductType) => {
         <div className=" w-full m-0 my-2">
           <img
             className="-mt-2 block w-full h-auto object-cover"
-            onClick={window.scrollTo(0, 0)}
+            onClick={() => window.scrollTo(0, 0)}
             src={props.image}
             alt=""
           />

@@ -4,7 +4,7 @@ import { removeToCart } from "../redux/dataSlice";
 import { RootState } from "../redux/store";
 import { ProductType } from "../type/product.type";
 const CartItem = () => {
-  const { cartItem, totalSum } = useSelector((state: RootState) => state.data);
+  const { cartItem, totalSum } = useSelector((state: any) => state.data);
   const dispatch = useDispatch();
 
   return (
@@ -22,7 +22,7 @@ const CartItem = () => {
               <p className="mr-2">Remove</p>
             </div>
             <hr className="h-1 bg-slate-200 border-spacing-0" />
-            {cartItem.map((e: ProductType, i) => {
+            {cartItem.map((e: ProductType, i: number) => {
               return (
                 <div key={i}>
                   <div className=" cartitems-main items-center text-lg font-medium">
@@ -37,7 +37,7 @@ const CartItem = () => {
                       {/* <span className=" cursor-pointer">-</span> */}
                     </div>
 
-                    <p className="mr-2">$ {e.new_price * e.count}</p>
+                    <p className="mr-2">$ {e.count && e.new_price * e.count}</p>
                     <img
                       onClick={() => {
                         dispatch(removeToCart(e));

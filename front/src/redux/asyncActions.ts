@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { ProductType } from "../type/product.type";
 
 export const fetchDataProducts = createAsyncThunk(
   "product/fetchProductStatus",
@@ -35,7 +36,7 @@ export const fetchDataCart = createAsyncThunk(
   }
 );
 
-export async function fetchDataUpdateCart(dataCart) {
+export async function fetchDataUpdateCart(dataCart: ProductType) {
   try {
     const response = await fetch("http://localhost:4001/updatecart", {
       method: "POST",
@@ -55,7 +56,7 @@ export async function fetchDataUpdateCart(dataCart) {
     throw error;
   }
 }
-export async function fetchDataUpdateProductReviews(dataProducts) {
+export async function fetchDataUpdateProductReviews(dataProducts: ProductType) {
   try {
     const response = await fetch("http://localhost:4001/updateproduct", {
       method: "POST",

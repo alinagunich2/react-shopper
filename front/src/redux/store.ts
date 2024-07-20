@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./dataSlice";
 import { useDispatch } from "react-redux";
 
-export const store = configureStore({
+export const store: any = configureStore({
   reducer: {
     data: counterReducer,
   },

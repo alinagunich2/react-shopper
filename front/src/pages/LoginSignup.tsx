@@ -1,4 +1,5 @@
 import React from "react";
+import { LoginResponse } from "../type/login.type";
 const LoginSignup = () => {
   const [state, setState] = React.useState("Login");
   const [formData, setFormData] = React.useState({
@@ -7,12 +8,16 @@ const LoginSignup = () => {
     email: "",
   });
 
-  const changeHandler = async (e) => {
+  const changeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const [errors, setErrors] = React.useState({});
-  const handleSubmit = (e) => {
+  const [errors, setErrors] = React.useState<{
+    password?: string;
+    username?: string;
+    email?: string;
+  }>({});
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!formData.username.trim()) {
@@ -62,7 +67,7 @@ const LoginSignup = () => {
   };
 
   const login = async () => {
-    let responseData;
+    let responseData: LoginResponse | undefined;
     await fetch("http://localhost:4001/login", {
       method: "POST",
       headers: {
@@ -75,16 +80,18 @@ const LoginSignup = () => {
       .then((data) => {
         responseData = data;
       });
-    if (responseData.success) {
-      localStorage.setItem("username", responseData.name);
-      localStorage.setItem("auth-token", responseData.token);
-      window.location.replace("/");
-    } else {
-      alert(responseData.errors);
+    if (responseData) {
+      if (responseData.success) {
+        localStorage.setItem("username", responseData.name);
+        localStorage.setItem("auth-token", responseData.token);
+        window.location.replace("/");
+      } else {
+        alert(responseData.errors);
+      }
     }
   };
   const signUp = async () => {
-    let responseData;
+    let responseData: LoginResponse | undefined;
     await fetch("http://localhost:4001/signup", {
       method: "POST",
       headers: {
@@ -97,12 +104,14 @@ const LoginSignup = () => {
       .then((data) => {
         responseData = data;
       });
-    if (responseData.success) {
-      localStorage.setItem("username", responseData.name);
-      localStorage.setItem("auth-token", responseData.token);
-      window.location.replace("/");
-    } else {
-      alert(responseData.errors);
+    if (responseData) {
+      if (responseData.success) {
+        localStorage.setItem("username", responseData.name);
+        localStorage.setItem("auth-token", responseData.token);
+        window.location.replace("/");
+      } else {
+        alert(responseData.errors);
+      }
     }
   };
 

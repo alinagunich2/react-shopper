@@ -6,32 +6,38 @@ import cart_icon from "./assets/cart_icon.png";
 import { Link } from "react-router-dom";
 import avatar from "./assets/avatar.png";
 import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+
+type MenuItemType = "shop" | "women" | "men" | "kids";
 
 const Navbar = React.memo(() => {
-  const { totalItem } = useSelector((state) => state.data);
-  const [menu, setMenu] = useState("shop");
-  const menuRef = useRef();
-  const crossRef = useRef();
-  const dropdown = useRef();
+  const { totalItem } = useSelector((state: RootState) => state.data);
+  const [menu, setMenu] = useState<MenuItemType>("shop");
+  const menuRef = useRef<HTMLDivElement>(null);
+  const crossRef = useRef<HTMLImageElement>(null);
+  const dropdown = useRef<HTMLImageElement>(null);
 
-  const dropdown_toggle = (e) => {
-    menuRef.current.classList.toggle("nav-menu-visible");
-    crossRef.current.classList.toggle("cross-visible");
-    e.target.classList.toggle("open");
+  const dropdown_toggle = (e: React.MouseEvent<HTMLElement>) => {
+    menuRef.current?.classList.toggle("nav-menu-visible");
+    crossRef.current?.classList.toggle("cross-visible");
+    (e.target as any).classList.toggle("open");
     window.scrollTo(0, 0);
   };
   const onClickBurger = () => {
     if (window.innerWidth < 768) {
-      menuRef.current.classList.remove("nav-menu-visible");
-      dropdown.current.classList.remove("open");
+      menuRef.current?.classList.remove("nav-menu-visible");
+      dropdown.current?.classList.remove("open");
     }
   };
   let [button, setButton] = useState(false);
-  const logoutRef = useRef(null);
+  const logoutRef = useRef<HTMLButtonElement>(null);
 
   React.useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (logoutRef.current && !logoutRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        logoutRef.current &&
+        !logoutRef.current.contains(event.target as Node)
+      ) {
         setButton(false);
       }
     };
