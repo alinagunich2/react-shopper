@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import star_icon from "./assets/star_icon.png";
 import start_dull_icon from "./assets/star_dull_icon.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart, addReviews } from "../redux/dataSlice";
 import { ProductReviewsType, ProductType } from "../type/product.type";
 
@@ -10,13 +10,36 @@ type propsType = {
 };
 
 const ProductDisplay = (props: propsType) => {
+  const { product } = props;
+  let plusStar = 0;
+  let minStar = 5 - plusStar;
+  const { cartItem } = useSelector((state: any) => state.data);
+  const [inCart, setInCart] = useState(0);
+
+  useEffect(() => {
+    if (inCart === 0) {
+      cartItem.forEach((item: ProductType) => {
+        if (item.id === product.id) {
+          setInCart((pre) => {
+            if (item.count) {
+              return pre + item.count;
+            }
+            return pre;
+          });
+
+          console.log(item.id);
+        }
+      });
+    }
+  }, [cartItem]);
   const dispatch = useDispatch();
+  const sizes = ["S", "M", "L", "XL", "XXL"];
+  const [size, setSize] = useState("");
   const [form, setForm] = React.useState({
     name: "",
     star: "",
     review: "",
   });
-
   const [errors, setErrors] = React.useState<{
     name?: string;
     review?: string;
@@ -78,16 +101,11 @@ const ProductDisplay = (props: propsType) => {
       });
     }
   };
-
-  let sizes = ["S", "M", "L", "XL", "XXL"];
-  let [size, setSize] = useState("");
-  const { product } = props;
   const add = () => {
     let prod = { ...product, count: 1, size: size };
+    setInCart((pre) => pre + 1);
     dispatch(addToCart(prod));
   };
-
-  let plusStar = 0;
 
   if (product.rewiews) {
     plusStar = Math.round(
@@ -96,9 +114,6 @@ const ProductDisplay = (props: propsType) => {
       }, 0) / product.rewiews.length
     );
   }
-
-  console.log(plusStar);
-  let minStar = 5 - plusStar;
   let lengthPlusStar = Array.from(
     { length: plusStar },
     (_, index) => index + 1
@@ -185,14 +200,19 @@ const ProductDisplay = (props: propsType) => {
               Select size to continue!!! &#128152;
             </p>
           )}
-
-          <button
-            onClick={() => add()}
-            disabled={size === ""}
-            className="disabled:cursor-not-allowed disabled:bg-slate-500 py-5 px-10 w-52 text-base font-semibold text-white bg-red-500 mb-10 border-spacing-0 outline-none cursor-pointer"
-          >
-            ADD TO CART
-          </button>
+          <div className="flex ">
+            <button
+              onClick={() => add()}
+              disabled={size === ""}
+              className="disabled:cursor-not-allowed disabled:bg-slate-500 py-5 px-10 w-52 text-base font-semibold text-white bg-red-500 focus:bg-red-500  transition-all duration-300 ease-in-out  mb-10 border-spacing-0 outline-none cursor-pointer"
+            >
+              ADD TO CART
+            </button>
+            <div className="ml-3 text-center ">
+              <p className="font-semibold text-red-600">Added to cart</p>
+              <p className=" font-medium text-red-600">{inCart}</p>
+            </div>
+          </div>
         </div>
       </div>
       <div className="mb-32 mx-10 sm:mx-20  lg:max-w-2xl">

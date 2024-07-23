@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Fooret = () => {
   return (
-    <div className=" pt-7 px-5 flex-center-all flex-col gap-8 sm:gap-14">
+    <div className=" pt-7 px-5 flex-center-all flex-col gap-8 sm:gap-14 border-t border-gray-200 border-solid">
       <Link to="/">
         <div className=" z-10 flex items-center gap-3">
           <img

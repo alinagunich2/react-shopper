@@ -1,8 +1,10 @@
 import remove_icon from "./assets/cart_cross_icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { removeToCart } from "../redux/dataSlice";
-import { RootState } from "../redux/store";
 import { ProductType } from "../type/product.type";
+import emptyCart from "./assets/empty-cart.png";
+import { Link } from "react-router-dom";
+
 const CartItem = () => {
   const { cartItem, totalSum } = useSelector((state: any) => state.data);
   const dispatch = useDispatch();
@@ -26,7 +28,14 @@ const CartItem = () => {
               return (
                 <div key={i}>
                   <div className=" cartitems-main items-center text-lg font-medium">
-                    <img className="block mr-2 h-16" src={e.image} alt="" />
+                    <Link to={"/product/" + e.id}>
+                      <img
+                        className="block mr-2 h-16 cursor-pointer"
+                        src={e.image}
+                        alt=""
+                      />
+                    </Link>
+
                     <p className="mr-2">{e.name}</p>
                     <p className="mr-2">{e.size}</p>
                     <p className="mr-2">$ {e.new_price}</p>
@@ -53,16 +62,33 @@ const CartItem = () => {
             })}
           </div>
 
-          <div className="flex my-24">
-            <div className="flex-1 flex flex-col mr-52 gap-10">
-              <h1 className=" text-3xl">Total ${totalSum}</h1>
+          <div className="flex my-24 text-center ">
+            <div className="flex-1 flex flex-col  gap-10">
+              <h1 className=" ">
+                <span className=" text-lg xs:text-2xl md:text-3xl font-semibold">
+                  Total:
+                </span>
+                <span className=" text-base xs:text-xl md:text-2xl">
+                  {" "}
+                  ${totalSum}
+                </span>
+              </h1>
             </div>
           </div>
         </div>
       ) : (
-        <p className=" mt-28 flex justify-center text-xl sm:text-2xl md:text-3xl">
-          В корзине пусто &#128554;
-        </p>
+        <div>
+          <p className=" mt-10 md:mt-28 flex justify-center text-lg xs:text-xl sm:text-2xl md:text-3xl  font-semibold">
+            В корзине пусто &#128554;
+          </p>
+          <div className=" mb-11 flex mx-auto w-24 xs:w-40 md:w-56 ">
+            <img
+              className="flex justify-center"
+              src={emptyCart}
+              alt="cart_icon"
+            />
+          </div>
+        </div>
       )}
     </>
   );

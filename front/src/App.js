@@ -13,6 +13,7 @@ import women_banner from "./components/assets/banner_women.png";
 import kid_banner from "./components/assets/banner_kids.png";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataCart, fetchDataProducts } from "./redux/asyncActions";
+import { Skeleton } from "./components/Skeleton";
 function App() {
   const dispatch = useDispatch();
   React.useEffect(() => {

@@ -6,14 +6,6 @@ import {
 } from "./asyncActions";
 import { fetchDataCart } from "./asyncActions";
 import { ProductType } from "../type/product.type";
-import { RootState } from "./store";
-
-interface DataState {
-  all_product: ProductType[];
-  cartItem: ProductType[];
-  totalItem: number;
-  totalSum: number;
-}
 
 const initialState = {
   cartItem: [],
