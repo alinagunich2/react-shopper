@@ -14,6 +14,7 @@ import kid_banner from "./components/assets/banner_kids.png";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataCart, fetchDataProducts } from "./redux/asyncActions";
 import { Skeleton } from "./components/Skeleton";
+import PagesContacts from "./pages/PagesContacts";
 function App() {
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -39,6 +40,19 @@ function App() {
             <Route
               path="/kids"
               element={<ShopCategory banner={kid_banner} category="kid" />}
+            />
+            <Route
+              path="/company"
+              element={<PagesContacts category="company" />}
+            />
+            <Route
+              path="/offices"
+              element={<PagesContacts category="offices" />}
+            />
+            <Route path="/about" element={<PagesContacts category="about" />} />
+            <Route
+              path="/contact"
+              element={<PagesContacts category="contact" />}
             />
             <Route path="/product" element={<Product />}>
               <Route path=":productId" element={<Product />} />

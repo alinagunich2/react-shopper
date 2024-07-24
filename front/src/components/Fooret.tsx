@@ -21,19 +21,16 @@ const Fooret = () => {
       </Link>
       <ul className="flex flex-wrap justify-center gap-6 sm:gap-10 text-[#252525] text-base sm:text-xl">
         <li className="cursor-pointer hover:border-gray-400 border-b-2 border-solid border-transparent transition-all duration-300 ease-in-out">
-          Company
+          <Link to="/company">Company</Link>
         </li>
         <li className="cursor-pointer hover:border-gray-400 border-b-2 border-solid border-transparent transition-all duration-300 ease-in-out">
-          Products
+          <Link to="/offices">Offices</Link>
         </li>
         <li className="cursor-pointer hover:border-gray-400 border-b-2 border-solid border-transparent transition-all duration-300 ease-in-out">
-          Offices
+          <Link to="/about">About</Link>
         </li>
         <li className="cursor-pointer hover:border-gray-400 border-b-2 border-solid border-transparent transition-all duration-300 ease-in-out">
-          About
-        </li>
-        <li className="cursor-pointer hover:border-gray-400 border-b-2 border-solid border-transparent transition-all duration-300 ease-in-out">
-          Contact
+          <Link to="/contact">Contact</Link>
         </li>
       </ul>
       <div className="flex gap-5">
